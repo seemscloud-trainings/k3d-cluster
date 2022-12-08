@@ -76,6 +76,11 @@ kubectl config set-context k3d-${CLUSTER_NAME}-keda-system \
                 --user admin@k3d-${CLUSTER_NAME} \
                 --namespace keda-system
 
+kubectl config set-context k3d-${CLUSTER_NAME}-kiali-system \
+                --cluster k3d-${CLUSTER_NAME} \
+                --user admin@k3d-${CLUSTER_NAME} \
+                --namespace kiali-system
+
 kubectl config set-context k3d-${CLUSTER_NAME}-istio-system \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
