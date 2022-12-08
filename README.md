@@ -36,6 +36,7 @@ kubectl create namespace nginx-ingress-system
 kubectl create namespace argocd-system
 kubectl create namespace keda-system
 kubectl create namespace istio-system
+kubectl create namespace kiali-system
 kubectl create namespace istio-gateway-system
 
 kubectl config set-context k3d-${CLUSTER_NAME}-default \
