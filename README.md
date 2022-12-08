@@ -127,6 +127,7 @@ helm upgrade --install cert-manager jetstack/cert-manager \
   --set installCRDs=true
 
 helm upgrade --install nginx-ingess nginx-stable/nginx-ingress \
+  --set controller.name=nginx-ingress \
   --namespace nginx-ingress-system
 
 helm upgrade --install istio-base istio/base \
