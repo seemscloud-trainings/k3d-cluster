@@ -190,6 +190,8 @@ EndOfMessage
 
 ```bash
 kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n istio-system kiali
+kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n minio-system minio
+kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n minio-system minio-console
 ```
 
 ```bash
@@ -200,9 +202,14 @@ KIALI_TOKEN=`kubectl get secret -n istio-system $(kubectl get sa kiali-service-a
 AROCD_IP=`kubectl get svc -n argocd-system argocd-server -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
 ARGOCD_PASS=`kubectl -n argocd-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
 
-echo "adresses:"
-echo -e " - kiali:\thttp://${KIALI_IP}:20001"
-echo -e " - argocd:\thttps://${AROCD_IP}:443"
+MINIO_IP=`kubectl get svc -n minio-system minio -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
+MINIO_CONSOLE_IP=`kubectl get svc -n minio-system minio-console -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
+
+echo "addresses:"
+echo -e " - kiali:\t\thttp://${KIALI_IP}:20001"
+echo -e " - argocd:\t\thttps://${AROCD_IP}:443"
+echo -e " - minio:\t\thttp://${MINIO_IP}:9000"
+echo -e " - minio (console):\thttp://${MINIO_CONSOLE_IP}:9001"
 echo
 echo "credentials:"
 echo -e " - kiali:\t${KIALI_TOKEN}"
