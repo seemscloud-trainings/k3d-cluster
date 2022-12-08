@@ -173,6 +173,8 @@ spec:
 EndOfMessage
 ```
 
+# Workspace
+
 ```bash
 kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n istio-system kiali
 ```
