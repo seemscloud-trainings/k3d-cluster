@@ -196,18 +196,18 @@ kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n minio-system minio-c
 
 ```bash
 cat << "EndOFMessage" | /bin/bash
-KIALI_IP=`kubectl get svc -n istio-system kiali -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
-KIALI_SA_name=`kubectl get sa kiali-service-account -n istio-system -o "jsonpath={.secrets[0].name}"`
-KIALI_TOKEN=`kubectl get secret -n istio-system ${KIALI_SA_name} -o jsonpath={.data.token} | base64 -d`
+KIALI_IP=$(kubectl get svc -n istio-system kiali -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
+KIALI_SA_NAME=$(kubectl get sa kiali-service-account -n istio-system -o "jsonpath={.secrets[0].name}")
+KIALI_TOKEN=$(kubectl get secret -n istio-system "${KIALI_SA_NAME}" -o jsonpath={.data.token} | base64 -d)
 
-AROCD_IP=`kubectl get svc -n argocd-system argocd-server -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
-ARGOCD_PASS=`kubectl -n argocd-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
+AROCD_IP=$(kubectl get svc -n argocd-system argocd-server -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
+ARGOCD_PASS=$(kubectl -n argocd-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 
-MINIO_IP=`kubectl get svc -n minio-system minio -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
-MINIO_CONSOLE_IP=`kubectl get svc -n minio-system minio-console -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
+MINIO_IP=$(kubectl get svc -n minio-system minio -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
+MINIO_CONSOLE_IP=$(kubectl get svc -n minio-system minio-console -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
 
-MINIO_USER=`kubectl get secrets -n minio-system minio -o go-template='{{.data.rootUser}}' | base64 -d`
-MINIO_PASSWORD=`kubectl get secrets -n minio-system minio -o go-template='{{.data.rootPassword}}' | base64 -d`
+MINIO_USER=$(kubectl get secrets -n minio-system minio -o go-template='{{.data.rootUser}}' | base64 -d)
+MINIO_PASSWORD=$(kubectl get secrets -n minio-system minio -o go-template='{{.data.rootPassword}}' | base64 -d)
 
 echo "addresses:"
 echo -e " - kiali:\t\thttp://${KIALI_IP}:20001"
@@ -219,6 +219,7 @@ echo "credentials:"
 echo -e " - kiali:\t${KIALI_TOKEN}"
 echo -e " - argocd:\t${ARGOCD_PASS}"
 echo -e " - minio:\t${MINIO_USER} ${MINIO_PASSWORD}"
+
 EndOFMessage
 ```
 
