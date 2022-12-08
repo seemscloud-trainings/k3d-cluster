@@ -179,6 +179,8 @@ kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n istio-system kiali
 
 ```bash
 cat << "EndOFMessage" | /bin/bash
+```
+```bash
 KIALI_IP=`kubectl get svc -n istio-system kiali -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
 KIALI_TOKEN=`kubectl get secret -n istio-system $(kubectl get sa kiali-service-account -n istio-system -o "jsonpath={.secrets[0].name}") -o jsonpath={.data.token} | base64 -d`
 
@@ -192,6 +194,8 @@ echo
 echo "credentials:"
 echo -e " - kiali:\t${KIALI_TOKEN}"
 echo -e " - argocd:\t${ARGOCD_PASS}"
+```
+```bash
 EndOFMessage
 ```
 
