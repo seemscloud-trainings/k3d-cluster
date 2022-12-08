@@ -148,6 +148,14 @@ kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n istio-system kiali
 kubectl -n argocd-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
 
+```bash
+KIALI_IP=`kubectl get svc -n istio-system kiali -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
+AROCD_IP=`kubectl get svc -n argocd-system argocd-server -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
+
+echo -e "Kiali:\thttp://${KIALI_IP}:20001"
+echo -e "Argo CD:\thttp://${AROCD_IP}:80"
+```
+
 # Configurations
 
 ```bash  
