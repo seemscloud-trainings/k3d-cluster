@@ -195,9 +195,9 @@ kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n minio-system minio-c
 ```
 
 ```bash
-cat << "EndOFMessage" | /bin/bash
 KIALI_IP=`kubectl get svc -n istio-system kiali -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
-KIALI_TOKEN=`kubectl get secret -n istio-system $(kubectl get sa kiali-service-account -n istio-system -o "jsonpath={.secrets[0].name}") -o jsonpath={.data.token} | base64 -d`
+KIALI_SA_name=`kubectl get sa kiali-service-account -n istio-system -o "jsonpath={.secrets[0].name}"`
+KIALI_TOKEN=`kubectl get secret -n istio-system ${KIALI_SA_name} -o jsonpath={.data.token} | base64 -d`
 
 AROCD_IP=`kubectl get svc -n argocd-system argocd-server -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
 ARGOCD_PASS=`kubectl -n argocd-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
