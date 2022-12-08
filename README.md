@@ -88,6 +88,11 @@ kubectl config set-context k3d-${CLUSTER_NAME}-minio-system \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
                 --namespace minio-system
+
+kubectl config set-context k3d-${CLUSTER_NAME}-prometheus-system \
+                --cluster k3d-${CLUSTER_NAME} \
+                --user admin@k3d-${CLUSTER_NAME} \
+                --namespace prometheus-system
 ```
 
 ```bash
@@ -100,9 +105,11 @@ kubectl create namespace istio-system
 kubectl create namespace kiali-system
 kubectl create namespace istio-gateway-system
 kubectl create namespace minio-system
+kubectl create namespace prometheus-system
 ```
 
 ```bash
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add metallb https://metallb.github.io/metallb
 helm repo add jetstack https://charts.jetstack.io
 helm repo add nginx-stable https://helm.nginx.com/stable
