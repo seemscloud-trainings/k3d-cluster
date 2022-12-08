@@ -217,7 +217,7 @@ echo -e " - minio (console):\thttp://${MINIO_CONSOLE_IP}:9001"
 echo
 echo "credentials:"
 echo -e " - kiali:\t${KIALI_TOKEN}"
-echo -e " - argocd:\t${ARGOCD_PASS}"
+echo -e " - argocd:\tadmin ${ARGOCD_PASS}"
 echo -e " - minio:\t${MINIO_USER} ${MINIO_PASSWORD}"
 
 EndOFMessage
