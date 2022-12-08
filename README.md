@@ -118,7 +118,10 @@ helm repo update
 helm upgrade --install argocd argo/argo-cd \
   --version 5.16.1 \
   --namespace argocd-system \
-  --set server.service.type=LoadBalancer
+  --set server.service.type=LoadBalancer \
+  --set configs.params.server.disable.auth=true \
+  --set configs.params.server.insecure=true \
+  --set server.service.servicePortHttp=8080
 
 helm upgrade --install keda kedacore/keda \
   --version 2.8.2 \
@@ -134,8 +137,8 @@ helm upgrade --install cert-manager jetstack/cert-manager \
   --set installCRDs=true
 
 helm upgrade --install nginx-ingess nginx-stable/nginx-ingress \
-  --set controller.name=nginx-ingress \
-  --namespace nginx-ingress-system
+  --namespace nginx-ingress-system \
+  --set controller.name=nginx-ingress
 
 helm upgrade --install istio-base istio/base \
   --version 1.16.0 \
@@ -154,11 +157,16 @@ helm upgrade --install kiali kiali/kiali-server \
   --namespace kiali-system \
   --set istio_namespace=istio-system \
   --set auth.strategy=anonymous \
-  --set server.port=8080
+  --set server.port=8080 \
+  --set deployment.service_type=LoadBalancer
 
 helm upgrade --install minio minio/minio \
   --version 5.0.1 \
   --set replicas=3 \
+  --set consoleService.type=LoadBalancer \
+  --set consoleService.port=8080 \
+  --set service.type=LoadBalancer \
+  --set service.port=9000 \
   --namespace minio-system
 ```
 
@@ -188,12 +196,6 @@ EndOfMessage
 ```
 
 # Workspace
-
-```bash
-kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n kiali-system kiali
-kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n minio-system minio
-kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n minio-system minio-console
-```
 
 ```bash
 cat << "EndOFMessage" | /bin/bash
