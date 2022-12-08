@@ -83,6 +83,11 @@ kubectl config set-context k3d-${CLUSTER_NAME}-istio-gateway-system \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
                 --namespace istio-gateway-system
+
+kubectl config set-context k3d-${CLUSTER_NAME}-minio-system \
+                --cluster k3d-${CLUSTER_NAME} \
+                --user admin@k3d-${CLUSTER_NAME} \
+                --namespace minio-system
 ```
 
 ```bash
@@ -94,6 +99,7 @@ kubectl create namespace keda-system
 kubectl create namespace istio-system
 kubectl create namespace kiali-system
 kubectl create namespace istio-gateway-system
+kubectl create namespace minio-system
 ```
 
 ```bash
@@ -103,6 +109,7 @@ helm repo add nginx-stable https://helm.nginx.com/stable
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo add kedacore https://kedacore.github.io/charts
 helm repo add kiali https://kiali.org/helm-charts
+helm repo add minio https://charts.min.io
 
 helm repo update
 ```
@@ -147,6 +154,10 @@ helm upgrade --install kiali kiali/kiali-operator \
   --namespace kiali-system \
   --set cr.create=true \
   --set cr.namespace=istio-system
+
+helm upgrade --install minio minio/minio \
+  --version 5.0.1 \
+  --namespace minio-system
 ```
 
 ```bash  
