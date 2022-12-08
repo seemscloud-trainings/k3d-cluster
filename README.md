@@ -189,7 +189,7 @@ ARGOCD_PASS=`kubectl -n argocd-system get secret argocd-initial-admin-secret -o 
 
 echo "adresses:"
 echo -e " - kiali:\thttp://${KIALI_IP}:20001"
-echo -e " - argocd:\thttp://${AROCD_IP}:80"
+echo -e " - argocd:\thttps://${AROCD_IP}:443"
 echo
 echo "credentials:"
 echo -e " - kiali:\t${KIALI_TOKEN}"
