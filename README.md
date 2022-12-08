@@ -122,6 +122,15 @@ helm repo update
 ```
 
 ```bash
+helm upgrade --install prometheus prometheus-community/prometheus \
+  --version 19.0.1 \
+  --namespace prometheus-system \
+  --set alertmanager.enabled=false \
+  --set prometheus-pushgateway.enabled=false \
+  --set kube-state-metrics.enabled=false \
+  --set server.service.servicePort=8080 \
+  --set server.service.type=LoadBalancer
+
 helm upgrade --install argocd argo/argo-cd \
   --version 5.16.1 \
   --namespace argocd-system \
