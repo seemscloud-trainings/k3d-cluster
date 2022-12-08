@@ -140,6 +140,12 @@ helm upgrade --install istio-istiod istio/istiod \
 helm upgrade --install istio-gateway istio/gateway \
   --version 1.16.0 \
   --namespace istio-gateway-system
+
+helm upgrade --install kiali kiali/kiali-operator \
+  --version 1.60.0 \
+  --namespace kiali-system \
+  --set cr.create=true \
+  --set cr.namespace=istio-system
 ```
 
 ```bash
