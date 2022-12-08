@@ -118,10 +118,11 @@ helm repo update
 helm upgrade --install argocd argo/argo-cd \
   --version 5.16.1 \
   --namespace argocd-system \
+  --set configs.params."server\.disable\.auth"=true \
+  --set configs.params."server\.insecure"=true \
   --set server.service.type=LoadBalancer \
-  --set configs.params.server.disable.auth=true \
-  --set configs.params.server.insecure=true \
-  --set server.service.servicePortHttp=8080
+  --set server.service.servicePortHttp=8080 \
+  --set server.service.servicePortHttps=8443
 
 helm upgrade --install keda kedacore/keda \
   --version 2.8.2 \
@@ -205,7 +206,6 @@ ARGOCD_PASS=$(kubectl -n argocd-system get secret argocd-initial-admin-secret -o
 
 MINIO_IP=$(kubectl get svc -n minio-system minio -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
 MINIO_CONSOLE_IP=$(kubectl get svc -n minio-system minio-console -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
-
 MINIO_USER=$(kubectl get secrets -n minio-system minio -o go-template='{{.data.rootUser}}' | base64 -d)
 MINIO_PASSWORD=$(kubectl get secrets -n minio-system minio -o go-template='{{.data.rootPassword}}' | base64 -d)
 
