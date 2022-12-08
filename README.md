@@ -188,10 +188,6 @@ echo -e "Kiali:\thttp://${KIALI_IP}:20001\n\tToken: ${KIALI_TOKEN}"
 echo -e "Argo CD:\thttp://${AROCD_IP}:80\n\tCredentials: admin ${ARGOCD_PASS}"
 ```
 
-# Configurations
-
-
-
 ```bash
 kubectl port-forward service/nginx-ingess-nginx-ingress \
   --namespace nginx-ingress-system \
