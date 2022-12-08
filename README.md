@@ -25,7 +25,7 @@ for i in `seq 0 $(("${SERVERS}"-1))` ; do
   kubectl taint nodes "k3d-${CLUSTER_NAME}-server-$i" dedicated=control-plane:NoSchedule
 done
 # NoSchedule- untaint node
-``` 
+```
 
 ```bash
 kubectl config delete-context k3d-${CLUSTER_NAME}
@@ -128,12 +128,23 @@ helm upgrade --install cert-manager jetstack/cert-manager \
 
 helm upgrade --install nginx-ingess nginx-stable/nginx-ingress \
   --namespace nginx-ingress-system
+
+helm upgrade --install istio-base istio/base \
+  --version 1.16.0 \
+  --namespace istio-system
+
+helm upgrade --install istio-istiod istio/istiod \
+  --version 1.16.0 \
+  --namespace istio-system
+
+helm upgrade --install istio-gateway istio/gateway \
+  --version 1.16.0 \
+  --namespace istio-gateway-system
 ```
 
-# Secrets
-
 ```bash
-# ArgoCD secret
+kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n istio-system  kiali
+
 kubectl -n argocd-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
 
