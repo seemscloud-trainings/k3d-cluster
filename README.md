@@ -201,16 +201,21 @@ EndOfMessage
 
 ```bash
 cat << "EndOFMessage" | /bin/bash
+# Addresses
 MINIO_IP=$(kubectl get svc -n minio-system minio -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
+KIALI_IP=$(kubectl get svc -n kiali-system kiali -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
+AROCD_IP=$(kubectl get svc -n argocd-system argocd-server -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
+
+# Credentials
 MINIO_CONSOLE_IP=$(kubectl get svc -n minio-system minio-console -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
 MINIO_USER=$(kubectl get secrets -n minio-system minio -o go-template='{{.data.rootUser}}' | base64 -d)
 MINIO_PASSWORD=$(kubectl get secrets -n minio-system minio -o go-template='{{.data.rootPassword}}' | base64 -d)
 
 echo "addresses:"
-echo -e " - kiali:\t\thttp://${KIALI_IP}:20001"
-echo -e " - argocd:\t\thttps://${AROCD_IP}:443"
+echo -e " - kiali:\t\thttp://${KIALI_IP}:8080"
+echo -e " - argocd:\t\thttp://${AROCD_IP}:8080"
 echo -e " - minio:\t\thttp://${MINIO_IP}:9000"
-echo -e " - minio (console):\thttp://${MINIO_CONSOLE_IP}:9001"
+echo -e " - minio (console):\thttp://${MINIO_CONSOLE_IP}:8080"
 echo
 echo "credentials:"
 echo -e " - minio:\t${MINIO_USER} ${MINIO_PASSWORD}"
