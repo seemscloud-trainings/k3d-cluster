@@ -148,23 +148,6 @@ helm upgrade --install kiali kiali/kiali-operator \
   --set cr.namespace=istio-system
 ```
 
-```bash
-kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n istio-system kiali
-```
-
-```bash
-KIALI_IP=`kubectl get svc -n istio-system kiali -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
-KIALI_TOKEN=`kubectl get secret -n istio-system $(kubectl get sa kiali-service-account -n istio-system -o "jsonpath={.secrets[0].name}") -o jsonpath={.data.token} | base64 -d`
-
-AROCD_IP=`kubectl get svc -n argocd-system argocd-server -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
-ARGOCD_PASS=`kubectl -n argocd-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
-
-echo -e "Kiali:\thttp://${KIALI_IP}:20001\n\tToken: ${KIALI_TOKEN}"
-echo -e "Argo CD:\thttp://${AROCD_IP}:80\n\tCredentials: admin ${ARGOCD_PASS}"
-```
-
-# Configurations
-
 ```bash  
 METALLB_CIDR=`docker network inspect k3d-${CLUSTER_NAME} | jq -r ".[0].IPAM.Config[0].Subnet" | awk -F'.' '{print $1"."$2"."$3"."128"/"25}'`
 
@@ -189,6 +172,25 @@ spec:
   - docker-host
 EndOfMessage
 ```
+
+```bash
+kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n istio-system kiali
+```
+
+```bash
+KIALI_IP=`kubectl get svc -n istio-system kiali -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
+KIALI_TOKEN=`kubectl get secret -n istio-system $(kubectl get sa kiali-service-account -n istio-system -o "jsonpath={.secrets[0].name}") -o jsonpath={.data.token} | base64 -d`
+
+AROCD_IP=`kubectl get svc -n argocd-system argocd-server -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
+ARGOCD_PASS=`kubectl -n argocd-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
+
+echo -e "Kiali:\thttp://${KIALI_IP}:20001\n\tToken: ${KIALI_TOKEN}"
+echo -e "Argo CD:\thttp://${AROCD_IP}:80\n\tCredentials: admin ${ARGOCD_PASS}"
+```
+
+# Configurations
+
+
 
 ```bash
 kubectl port-forward service/nginx-ingess-nginx-ingress \
