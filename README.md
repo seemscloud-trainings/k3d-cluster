@@ -137,6 +137,7 @@ helm upgrade --install cert-manager jetstack/cert-manager \
   --set installCRDs=true
 
 helm upgrade --install nginx-ingess nginx-stable/nginx-ingress \
+  --version 0.15.2 \
   --namespace nginx-ingress-system \
   --set controller.name=nginx-ingress
 
@@ -162,12 +163,12 @@ helm upgrade --install kiali kiali/kiali-server \
 
 helm upgrade --install minio minio/minio \
   --version 5.0.1 \
+  --namespace minio-system \
   --set replicas=3 \
   --set consoleService.type=LoadBalancer \
   --set consoleService.port=8080 \
   --set service.type=LoadBalancer \
-  --set service.port=9000 \
-  --namespace minio-system
+  --set service.port=9000
 ```
 
 ```bash  
