@@ -34,6 +34,8 @@ kubectl config set-context k3d-${CLUSTER_NAME}-default \
                 --namespace kube-default
 
 kubectl config use-context k3d-${CLUSTER_NAME}-default
+
+kubectl config delete-context k3d-${CLUSTER_NAME}
 ```
 
 ```bash
@@ -84,8 +86,6 @@ kubectl config set-context k3d-${CLUSTER_NAME}-istio-gateway-system \
 ```
 
 ```bash
-kubectl config delete-context k3d-${CLUSTER_NAME}
-
 kubectl create namespace metallb-system
 kubectl create namespace cert-manager-system
 kubectl create namespace nginx-ingress-system
