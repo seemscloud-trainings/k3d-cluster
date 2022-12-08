@@ -157,6 +157,7 @@ helm upgrade --install kiali kiali/kiali-operator \
 
 helm upgrade --install minio minio/minio \
   --version 5.0.1 \
+  --set replicas=3 \
   --namespace minio-system
 ```
 
