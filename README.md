@@ -149,11 +149,12 @@ helm upgrade --install istio-gateway istio/gateway \
   --version 1.16.0 \
   --namespace istio-gateway-system
 
-helm upgrade --install kiali kiali/kiali-operator \
+helm upgrade --install kiali kiali/kiali-server \
   --version 1.60.0 \
   --namespace kiali-system \
-  --set cr.create=true \
-  --set cr.namespace=istio-system
+  --set istio_namespace=istio-system \
+  --set auth.strategy=anonymous \
+  --set server.port=8080
 
 helm upgrade --install minio minio/minio \
   --version 5.0.1 \
@@ -196,10 +197,6 @@ kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n minio-system minio-c
 
 ```bash
 cat << "EndOFMessage" | /bin/bash
-KIALI_IP=$(kubectl get svc -n istio-system kiali -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
-KIALI_SA_NAME=$(kubectl get sa kiali-service-account -n istio-system -o "jsonpath={.secrets[0].name}")
-KIALI_TOKEN=$(kubectl get secret -n istio-system "${KIALI_SA_NAME}" -o jsonpath={.data.token} | base64 -d)
-
 AROCD_IP=$(kubectl get svc -n argocd-system argocd-server -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
 ARGOCD_PASS=$(kubectl -n argocd-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
 
@@ -216,7 +213,6 @@ echo -e " - minio:\t\thttp://${MINIO_IP}:9000"
 echo -e " - minio (console):\thttp://${MINIO_CONSOLE_IP}:9001"
 echo
 echo "credentials:"
-echo -e " - kiali:\t${KIALI_TOKEN}"
 echo -e " - argocd:\tadmin ${ARGOCD_PASS}"
 echo -e " - minio:\t${MINIO_USER} ${MINIO_PASSWORD}"
 
