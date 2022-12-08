@@ -201,9 +201,6 @@ EndOfMessage
 
 ```bash
 cat << "EndOFMessage" | /bin/bash
-AROCD_IP=$(kubectl get svc -n argocd-system argocd-server -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
-ARGOCD_PASS=$(kubectl -n argocd-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
-
 MINIO_IP=$(kubectl get svc -n minio-system minio -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
 MINIO_CONSOLE_IP=$(kubectl get svc -n minio-system minio-console -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
 MINIO_USER=$(kubectl get secrets -n minio-system minio -o go-template='{{.data.rootUser}}' | base64 -d)
@@ -216,7 +213,6 @@ echo -e " - minio:\t\thttp://${MINIO_IP}:9000"
 echo -e " - minio (console):\thttp://${MINIO_CONSOLE_IP}:9001"
 echo
 echo "credentials:"
-echo -e " - argocd:\tadmin ${ARGOCD_PASS}"
 echo -e " - minio:\t${MINIO_USER} ${MINIO_PASSWORD}"
 
 EndOFMessage
