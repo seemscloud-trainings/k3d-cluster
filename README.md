@@ -28,19 +28,6 @@ done
 ```
 
 ```bash
-kubectl config delete-context k3d-${CLUSTER_NAME}
-
-kubectl create namespace metallb-system
-kubectl create namespace cert-manager-system
-kubectl create namespace nginx-ingress-system
-kubectl create namespace argocd-system
-kubectl create namespace keda-system
-kubectl create namespace istio-system
-kubectl create namespace kiali-system
-kubectl create namespace istio-gateway-system
-```
-
-```bash
 kubectl config set-context k3d-${CLUSTER_NAME}-default \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
@@ -94,6 +81,19 @@ kubectl config set-context k3d-${CLUSTER_NAME}-istio-gateway-system \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
                 --namespace istio-gateway-system
+```
+
+```bash
+kubectl config delete-context k3d-${CLUSTER_NAME}
+
+kubectl create namespace metallb-system
+kubectl create namespace cert-manager-system
+kubectl create namespace nginx-ingress-system
+kubectl create namespace argocd-system
+kubectl create namespace keda-system
+kubectl create namespace istio-system
+kubectl create namespace kiali-system
+kubectl create namespace istio-gateway-system
 ```
 
 ```bash
