@@ -206,6 +206,9 @@ ARGOCD_PASS=`kubectl -n argocd-system get secret argocd-initial-admin-secret -o 
 MINIO_IP=`kubectl get svc -n minio-system minio -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
 MINIO_CONSOLE_IP=`kubectl get svc -n minio-system minio-console -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}'`
 
+MINIO_USER=`kubectl get secrets -n minio-system minio -o go-template='{{.data.rootUser}}' | base64 -d`
+MINIO_PASSWORD=`kubectl get secrets -n minio-system minio -o go-template='{{.data.rootPassword}}' | base64 -d`
+
 echo "addresses:"
 echo -e " - kiali:\t\thttp://${KIALI_IP}:20001"
 echo -e " - argocd:\t\thttps://${AROCD_IP}:443"
@@ -215,6 +218,7 @@ echo
 echo "credentials:"
 echo -e " - kiali:\t${KIALI_TOKEN}"
 echo -e " - argocd:\t${ARGOCD_PASS}"
+echo -e " - minio:\t${MINIO_USER} ${MINIO_PASSWORD}"
 EndOFMessage
 ```
 
