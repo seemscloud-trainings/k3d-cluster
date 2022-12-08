@@ -143,7 +143,7 @@ helm upgrade --install istio-gateway istio/gateway \
 ```
 
 ```bash
-kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n istio-system  kiali
+kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n istio-system kiali
 
 kubectl -n argocd-system get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
