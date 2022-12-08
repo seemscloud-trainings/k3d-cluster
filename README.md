@@ -38,14 +38,18 @@ kubectl create namespace keda-system
 kubectl create namespace istio-system
 kubectl create namespace kiali-system
 kubectl create namespace istio-gateway-system
+```
 
+```bash
 kubectl config set-context k3d-${CLUSTER_NAME}-default \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
                 --namespace kube-default
 
 kubectl config use-context k3d-${CLUSTER_NAME}-default
+```
 
+```bash
 kubectl config set-context k3d-${CLUSTER_NAME}-kube-system \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
