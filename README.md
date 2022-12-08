@@ -189,7 +189,7 @@ EndOfMessage
 # Workspace
 
 ```bash
-kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n istio-system kiali
+kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n kiali-system kiali
 kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n minio-system minio
 kubectl patch svc -p '{"spec":{"type": "LoadBalancer"}}' -n minio-system minio-console
 ```
