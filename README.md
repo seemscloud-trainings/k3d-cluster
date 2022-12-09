@@ -89,10 +89,10 @@ kubectl config set-context k3d-${CLUSTER_NAME}-minio-system \
                 --user admin@k3d-${CLUSTER_NAME} \
                 --namespace minio-system
 
-kubectl config set-context k3d-${CLUSTER_NAME}-prometheus-system \
+kubectl config set-context k3d-${CLUSTER_NAME}-metrics-system \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
-                --namespace prometheus-system
+                --namespace metrics-system
 ```
 
 ```bash
@@ -105,10 +105,11 @@ kubectl create namespace istio-system
 kubectl create namespace kiali-system
 kubectl create namespace istio-gateway-system
 kubectl create namespace minio-system
-kubectl create namespace prometheus-system
+kubectl create namespace metrics-system
 ```
 
 ```bash
+helm repo add grafana https://grafana.github.io/helm-charts
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add metallb https://metallb.github.io/metallb
 helm repo add jetstack https://charts.jetstack.io
@@ -124,7 +125,7 @@ helm repo update
 ```bash
 helm upgrade --install prometheus prometheus-community/prometheus \
   --version 19.0.1 \
-  --namespace prometheus-system \
+  --namespace metrics-system \
   --set alertmanager.enabled=false \
   --set prometheus-pushgateway.enabled=false \
   --set kube-state-metrics.enabled=false \
