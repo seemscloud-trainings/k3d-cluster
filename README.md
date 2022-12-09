@@ -139,6 +139,7 @@ helm upgrade --install grafana grafana/grafana \
   --set service.port=8080 \
   --set 'grafana\.ini'.'auth\.anonymous'.enabled=true \
   --set 'grafana\.ini'.'auth\.anonymous'.org_role=Admin \
+  --set 'grafana\.ini'.auth.disable_login_form=true \
   --set datasources.'datasources\.yaml'.apiVersion=1 \
   --set datasources.'datasources\.yaml'.datasources[0].name=Prometheus \
   --set datasources.'datasources\.yaml'.datasources[0].type=prometheus \
