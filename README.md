@@ -93,6 +93,11 @@ kubectl config set-context k3d-${CLUSTER_NAME}-metrics-system \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
                 --namespace metrics-system
+
+kubectl config set-context k3d-${CLUSTER_NAME}-tracing-system \
+                --cluster k3d-${CLUSTER_NAME} \
+                --user admin@k3d-${CLUSTER_NAME} \
+                --namespace tracing-system
 ```
 
 ```bash
@@ -106,6 +111,7 @@ kubectl create namespace kiali-system
 kubectl create namespace istio-gateway-system
 kubectl create namespace minio-system
 kubectl create namespace metrics-system
+kubectl create namespace tracing-system
 ```
 
 ```bash
@@ -118,6 +124,7 @@ helm repo add argo https://argoproj.github.io/argo-helm
 helm repo add kedacore https://kedacore.github.io/charts
 helm repo add kiali https://kiali.org/helm-charts
 helm repo add minio https://charts.min.io
+helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
 
 helm repo update
 ```
