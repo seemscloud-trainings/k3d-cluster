@@ -198,7 +198,14 @@ helm upgrade --install kiali kiali/kiali-server \
   --set istio_namespace=istio-system \
   --set auth.strategy=anonymous \
   --set server.port=8080 \
-  --set deployment.service_type=LoadBalancer
+  --set deployment.service_type=LoadBalancer \
+  --set external_services.grafana.enabled=true \
+  --set external_services.grafana.in_cluster_url=http://grafana.metrics-system:8080 \
+  --set external_services.prometheus.enabled=true \
+  --set external_services.prometheus.url=http://prometheus-server.metrics-system:8080 \
+  --set external_services.tracing.enabled=true \
+  --set external_services.tracing.enabled=true \
+  --set external_services.tracing.in_cluster_url=http://jaeger-query.tracing-system:16685
 
 helm upgrade --install minio minio/minio \
   --version 5.0.1 \
@@ -208,6 +215,12 @@ helm upgrade --install minio minio/minio \
   --set consoleService.port=8080 \
   --set service.type=LoadBalancer \
   --set service.port=9000
+
+helm upgrade --install jaeger jaegertracing/jaeger \
+  --version 0.65.2 \
+  --namespace tracing-system \
+  --set query.service.type=LoadBalancer \
+  --set query.service.port=8080
 ```
 
 ```bash  
