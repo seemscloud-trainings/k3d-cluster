@@ -132,6 +132,19 @@ helm upgrade --install prometheus prometheus-community/prometheus \
   --set server.service.servicePort=8080 \
   --set server.service.type=LoadBalancer
 
+helm upgrade --install grafana grafana/grafana \
+  --version 6.46.1 \
+  --namespace metrics-system \
+  --set service.type=LoadBalancer \
+  --set service.port=8080 \
+  --set 'grafana\.ini'.'auth\.anonymous'.enabled=true \
+  --set 'grafana\.ini'.'auth\.anonymous'.org_role=Admin \
+  --set datasources.'datasources\.yaml'.apiVersion=1 \
+  --set datasources.'datasources\.yaml'.datasources[0].name=Prometheus \
+  --set datasources.'datasources\.yaml'.datasources[0].type=prometheus \
+  --set datasources.'datasources\.yaml'.datasources[0].url=http://prometheus-server:8080 \
+  --set datasources.'datasources\.yaml'.datasources[0].isDefault=true
+
 helm upgrade --install argocd argo/argo-cd \
   --version 5.16.1 \
   --namespace argocd-system \
