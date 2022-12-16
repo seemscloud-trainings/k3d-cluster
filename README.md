@@ -195,7 +195,8 @@ helm upgrade --install istio-istiod istio/istiod \
 
 helm upgrade --install istio-ingress-gateway istio/gateway \
   --version 1.16.0 \
-  --namespace istio-gateway-system
+  --namespace istio-gateway-system \
+  --set service.type=LoadBalancer
   
 helm upgrade --install istio-egress-gateway istio/gateway \
   --version 1.16.0 \
