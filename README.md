@@ -31,7 +31,7 @@ done
 kubectl config set-context k3d-${CLUSTER_NAME}-default \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
-                --namespace kube-default
+                --namespace default
 
 kubectl config use-context k3d-${CLUSTER_NAME}-default
 
