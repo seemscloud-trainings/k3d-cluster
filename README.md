@@ -274,7 +274,7 @@ MINIO_PASSWORD=$(kubectl get secrets -n minio-system minio -o go-template='{{.da
 echo "addresses:"
 echo -e " - kiali:\t\thttp://${KIALI_IP}:8080"
 echo -e " - argocd:\t\thttp://${AROCD_IP}:8080"
-echo -e " - jeager:\thttp://${JAEGER_IP}:8080"
+echo -e " - jeager:\t\thttp://${JAEGER_IP}:8080"
 echo -e " - grafana:\t\thttp://${GRAFANA_IP}:8080"
 echo -e " - prometheus:\t\thttp://${PROM_IP}:8080"
 echo -e " - minio:\t\thttp://${MINIO_IP}:9000"
