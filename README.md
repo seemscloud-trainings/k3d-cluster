@@ -193,9 +193,14 @@ helm upgrade --install istio-istiod istio/istiod \
   --version 1.16.0 \
   --namespace istio-system
 
-helm upgrade --install istio-gateway istio/gateway \
+helm upgrade --install istio-ingress-gateway istio/gateway \
   --version 1.16.0 \
   --namespace istio-gateway-system
+  
+helm upgrade --install istio-egress-gateway istio/gateway \
+  --version 1.16.0 \
+  --namespace istio-gateway-system \
+  --set service.type=ClusterIP
 
 helm upgrade --install kiali kiali/kiali-server \
   --version 1.60.0 \
