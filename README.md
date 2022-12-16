@@ -216,7 +216,11 @@ helm upgrade --install minio minio/minio \
   --set consoleService.port=8080 \
   --set persistence.enabled=false \
   --set service.type=LoadBalancer \
-  --set service.port=9000
+  --set service.port=9000 \
+  --set persistence.enabled=false \
+  --set extraVolumes[0].name=emptyDir \
+  --set extraVolumeMounts[0].name=emptyDir \
+  --set extraVolumeMounts[0].mountPath=/export
 
 helm upgrade --install jaeger jaegertracing/jaeger \
   --version 0.65.2 \
