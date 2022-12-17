@@ -301,3 +301,7 @@ kubectl port-forward service/nginx-ingess-nginx-ingress \
   --namespace nginx-ingress-system \
   8080:80
 ```
+
+# Examples
+
+[Nginx Ingress](examples/INGRESS.md)
