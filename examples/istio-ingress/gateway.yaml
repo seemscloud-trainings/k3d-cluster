@@ -1,0 +1,49 @@
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: foo-app
+  namespace: istio-gateway-system
+spec:
+  selector:
+    istio: ingress-gateway
+  servers:
+    - hosts:
+        - "foo.localhost"
+      port:
+        name: http
+        number: 80
+        protocol: HTTP
+    - hosts:
+        - "foo.localhost"
+      port:
+        name: https
+        number: 443
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: foo-app
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: bar-app
+  namespace: istio-gateway-system
+spec:
+  selector:
+    istio: ingress-gateway
+  servers:
+    - hosts:
+        - "bar.localhost"
+      port:
+        name: http
+        number: 80
+        protocol: HTTP
+    - hosts:
+        - "bar.localhost"
+      port:
+        name: https
+        number: 443
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: bar-app

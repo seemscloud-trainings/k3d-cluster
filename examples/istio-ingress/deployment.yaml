@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foo-app
+  namespace: istio-gateway-system
+  labels:
+    app: foo-app
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: foo-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: foo-app
+        version: v1
+    spec:
+      containers:
+        - name: foo-app
+          image: seemscloud/http2:latest
+          imagePullPolicy: Always
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bar-app
+  namespace: istio-gateway-system
+  labels:
+    app: bar-app
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bar-app
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: bar-app
+        version: v1
+    spec:
+      containers:
+        - name: bar-app
+          image: nginx:latest
+          imagePullPolicy: Always
