@@ -336,11 +336,7 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 80
-ENDOFMESSAGE
-```
-
-```bash
-cat <<ENDOFMESSAGE | kubectl apply -f -
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
