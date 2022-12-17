@@ -304,4 +304,4 @@ kubectl port-forward service/nginx-ingess-nginx-ingress \
 
 # Examples
 
-[Nginx Ingress](examples/INGRESS.md)
+- [Nginx Ingress](examples/INGRESS.md)
