@@ -304,4 +304,5 @@ kubectl port-forward service/nginx-ingess-nginx-ingress \
 
 # Examples
 
-- [Nginx Ingress](examples/nginx-ingress)
+ - [Nginx Ingress](examples/nginx-ingress.yaml)
+ - [Istio Ingress](examples/istio-ingress)
