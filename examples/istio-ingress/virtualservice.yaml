@@ -1,33 +1,15 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: foo-app
-  namespace: istio-gateway-system
+  name: application
 spec:
   gateways:
-    - foo-app
+    - application
   hosts:
     - "foo.localhost"
   http:
     - route:
         - destination:
-            host: foo-app
+            host: application
             port:
               number: 8080
----
-apiVersion: networking.istio.io/v1beta1
-kind: VirtualService
-metadata:
-  name: bar-app
-  namespace: istio-gateway-system
-spec:
-  gateways:
-    - bar-app
-  hosts:
-    - "bar.localhost"
-  http:
-    - route:
-        - destination:
-            host: bar-app
-            port:
-              number: 80
