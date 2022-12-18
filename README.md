@@ -283,6 +283,8 @@ MINIO_CONSOLE_IP=$(kubectl get svc -n minio-system minio-console -o go-template=
 MINIO_USER=$(kubectl get secrets -n minio-system minio -o go-template='{{.data.rootUser}}' | base64 -d)
 MINIO_PASSWORD=$(kubectl get secrets -n minio-system minio -o go-template='{{.data.rootPassword}}' | base64 -d)
 
+clear
+
 echo "addresses:"
 echo -e " - kiali:\t\thttp://${KIALI_IP}:8080"
 echo -e " - argocd:\t\thttp://${AROCD_IP}:8080"
