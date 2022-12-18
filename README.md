@@ -181,7 +181,7 @@ helm upgrade --install nginx-ingess nginx-stable/nginx-ingress \
   --namespace nginx-ingress-system \
   --set controller.name=nginx-ingress \
   --set controller.nginxDebug=true \
-  --set controller.config.entries.http2='"true"' \
+  --set-string controller.config.entries.http2=true \
   --set controller.kind=daemonset
 
 helm upgrade --install istio-base istio/base \
