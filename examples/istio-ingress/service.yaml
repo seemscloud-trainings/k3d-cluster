@@ -8,6 +8,6 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      name: http
+      name: http2
       port: 8080
       targetPort: 8080

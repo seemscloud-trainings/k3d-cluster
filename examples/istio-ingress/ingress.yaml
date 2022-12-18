@@ -16,6 +16,10 @@ spec:
                 name: application
                 port:
                   number: 8080
+  tls:
+    - hosts:
+        - "moo.localhost"
+      secretName: application-tls
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
