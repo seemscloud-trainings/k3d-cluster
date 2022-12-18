@@ -24,3 +24,5 @@ spec:
           env:
             - name: SERVER_TYPE
               value: hypercorn
+#            - name: SERVER_TYPE
+#              value: uvicorn
