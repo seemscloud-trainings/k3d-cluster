@@ -1,0 +1,47 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: application
+spec:
+  gateways:
+    - application
+  hosts:
+    - "foo.localhost"
+  http:
+    - route:
+        - destination:
+            host: application
+            port:
+              number: 8080
+---
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: application
+spec:
+  selector:
+    istio: ingress-gateway
+  servers:
+    - hosts:
+        - "foo.localhost"
+      port:
+        name: http
+        number: 80
+        protocol: HTTP
+    - hosts:
+        - "foo.localhost"
+      port:
+        name: https
+        number: 443
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: application-tls
+---
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: default
+spec:
+  mtls:
+    mode: STRICT
