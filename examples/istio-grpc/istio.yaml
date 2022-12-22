@@ -12,7 +12,7 @@ spec:
         - destination:
             host: application
             port:
-              number: 8080
+              number: 9000
       match:
         - uri:
             prefix: /
@@ -28,15 +28,13 @@ spec:
     - hosts:
         - "foo.localhost"
       port:
-        name: http
+        name: grpc
         number: 80
-        protocol: HTTP
-      tls:
-        httpsRedirect: true
+        protocol: GRPC
     - hosts:
         - "foo.localhost"
       port:
-        name: https
+        name: HTTPS
         number: 443
         protocol: HTTPS
       tls:

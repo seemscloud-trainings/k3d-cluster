@@ -19,16 +19,17 @@ spec:
     spec:
       containers:
         - name: application
-          image: seemscloud/fastapi:latest
+          image: seemscloud/grpc-server:latest
           imagePullPolicy: Always
           securityContext:
             runAsNonRoot: true
             runAsGroup: 1000
             runAsUser: 1000
           ports:
-            - containerPort: 8080
+            - containerPort: 9000
+            - containerPort: 9443
           env:
-            - name: SERVER_TYPE
-              value: "hypercorn"
-            - name: SERVER_PORT
-              value: "8080"
+            - name: LISTEN_PORT
+              value: "9000"
+            - name: LISTEN_PORT_TLS
+              value: "9443"
