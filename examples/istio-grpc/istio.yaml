@@ -28,17 +28,17 @@ spec:
     - hosts:
         - "foo.localhost"
       port:
-        name: grpc
+        name: http2
         number: 80
-        protocol: GRPC
+        protocol: http2
     - hosts:
         - "foo.localhost"
       port:
-        name: HTTPS
+        name: https
         number: 443
         protocol: HTTPS
       tls:
-        mode: SIMPLE
+        mode: MUTUAL
         credentialName: application-tls
 ---
 apiVersion: security.istio.io/v1beta1

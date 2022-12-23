@@ -8,6 +8,10 @@ spec:
   type: ClusterIP
   ports:
     - protocol: TCP
-      name: grpc
+      name: grpc-plain
       port: 9000
       targetPort: 9000
+    - protocol: TCP
+      name: grpc-tls
+      port: 9443
+      targetPort: 9443
