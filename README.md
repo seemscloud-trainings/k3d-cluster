@@ -249,6 +249,25 @@ helm upgrade --install jaeger jaegertracing/jaeger \
   --namespace tracing-system \
   --set query.service.type=LoadBalancer \
   --set query.service.port=8080
+
+helm upgrade --install elasticsearch elastic/elasticsearch \
+  --version 8.5.1 \
+  --namespace logging-system \
+  --set fullnameOverride=elasticearch \
+  --set replicas=3 \
+  --set minimumMasterNodes=3 \
+  --set persistence.enabled=false \
+  --set createCert=true
+
+helm upgrade --install kibana elastic/kibana \
+  --version 8.5.1 \
+  --namespace logging-system \
+  --set elasticsearchHosts="https://elasticearch:9200" \
+  --set elasticsearchCertificateSecret=elasticearch-certs \
+  --set elasticsearchCredentialSecret=elasticearch-credentials \
+  --set replicas=1 \
+  --set fullnameOverride=kibana \
+  --set service.type=LoadBalancer
 ```
 
 ```bash  
