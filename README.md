@@ -253,20 +253,29 @@ helm upgrade --install jaeger jaegertracing/jaeger \
 helm upgrade --install elasticsearch elastic/elasticsearch \
   --version 8.5.1 \
   --namespace logging-system \
-  --set fullnameOverride=elasticearch \
+  --set masterService=elasticsearch-aio \
+  --set nodeGroup=aio \
   --set replicas=3 \
   --set minimumMasterNodes=3 \
+  --set maxUnavailable=3 \
   --set persistence.enabled=false \
-  --set createCert=true
+  --set createCert=true \
+  --set terminationGracePeriod=0
+
+kubectl delete job pre-install-kibana
+kubectl delete roles pre-install-kibana
+kubectl delete rolebindings pre-install-kibana
+kubectl delete cm kibana-helm-scripts
+kubectl delete serviceaccounts pre-install-kibana
 
 helm upgrade --install kibana elastic/kibana \
   --version 8.5.1 \
   --namespace logging-system \
-  --set elasticsearchHosts="https://elasticearch:9200" \
-  --set elasticsearchCertificateSecret=elasticearch-certs \
-  --set elasticsearchCredentialSecret=elasticearch-credentials \
-  --set replicas=1 \
   --set fullnameOverride=kibana \
+  --set elasticsearchHosts="https://elasticsearch-aio:9200" \
+  --set elasticsearchCertificateSecret=elasticsearch-aio-certs \
+  --set elasticsearchCredentialSecret=elasticsearch-aio-credentials \
+  --set replicas=1 \
   --set service.type=LoadBalancer
 ```
 
