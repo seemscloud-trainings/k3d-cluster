@@ -263,6 +263,8 @@ helm upgrade --install elasticsearch elastic/elasticsearch \
   --set terminationGracePeriod=0
 
 kubectl delete job pre-install-kibana
+kubectl delete job pre-install-kibana-kibana
+kubectl delete job post-delete-kibana
 kubectl delete roles pre-install-kibana
 kubectl delete rolebindings pre-install-kibana
 kubectl delete cm kibana-helm-scripts
