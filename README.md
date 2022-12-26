@@ -339,7 +339,6 @@ helm upgrade --install logging-operator-logging banzaicloud-stable/logging-opera
   --set fluentbit.tolerations[0].effect=NoSchedule \
   --set fluentbit.tolerations[0].key=dedicated \
   --set fluentbit.tolerations[0].value=control-plane
-  
 
 cat > fileConfigs.yaml << "EndOfMessage"
 fileConfigs:
@@ -353,7 +352,9 @@ fileConfigs:
       topics  logs
       format json
     </source>
-  01_outputs.conf: |-
+  02_filters.conf: |-
+  03_dispatch.conf: |-
+  04_outputs.conf: |-
     <match **>
       @type elasticsearch
       hosts "https://elasticsearch-aio:9200"
@@ -363,9 +364,6 @@ fileConfigs:
       
       index_name logs
     </match>
-  02_filters.conf: |-
-  03_dispatch.conf: |-
-  04_outputs.conf: |-
 EndOfMessage
 
 helm upgrade --install fluentd fluent/fluentd \
