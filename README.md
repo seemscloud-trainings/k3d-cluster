@@ -265,16 +265,6 @@ helm upgrade --install elasticsearch elastic/elasticsearch \
   --set terminationGracePeriod=0 \
   --set secret.password=elastic
 
-helm uninstall kibana
-
-kubectl delete job pre-install-kibana
-kubectl delete job post-delete-kibana
-kubectl delete roles pre-install-kibana
-kubectl delete secrets kibana-es-token
-kubectl delete rolebindings pre-install-kibana
-kubectl delete cm kibana-helm-scripts
-kubectl delete serviceaccounts pre-install-kibana
-
 helm upgrade --install kibana elastic/kibana \
   --version 8.5.1 \
   --namespace logging-system \
