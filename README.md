@@ -260,7 +260,8 @@ helm upgrade --install elasticsearch elastic/elasticsearch \
   --set maxUnavailable=3 \
   --set persistence.enabled=false \
   --set createCert=true \
-  --set terminationGracePeriod=0
+  --set terminationGracePeriod=0 \
+  --set secret.password=elastic
 
 kubectl delete job pre-install-kibana
 kubectl delete job post-delete-kibana
