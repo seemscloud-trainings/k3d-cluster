@@ -123,6 +123,8 @@ kubectl create namespace logging-system
 
 ```bash
 helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add elastic https://helm.elastic.co
+helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo add elastic https://helm.elastic.co
 helm repo add metallb https://metallb.github.io/metallb
