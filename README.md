@@ -254,6 +254,8 @@ helm upgrade --install jaeger jaegertracing/jaeger \
   --set query.service.port=8080
 ```
 
+### Elasticsearch
+
 ```bash
 helm upgrade --install elasticsearch elastic/elasticsearch \
   --version 8.5.1 \
@@ -288,6 +290,8 @@ helm upgrade --install kibana elastic/kibana \
   --set replicas=1 \
   --set service.type=LoadBalancer
 ```
+
+### Logging
   
 ```bash
 helm upgrade --install logging-operator banzaicloud-stable/logging-operator \
