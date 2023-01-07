@@ -1,3 +1,4 @@
+```bash
 cat << "EndOFMessage" | /bin/bash
 # Addresses
 MINIO_IP=$(kubectl get svc -n minio-system minio -o go-template='{{(index .status.loadBalancer.ingress 0).ip}}')
@@ -32,3 +33,10 @@ echo "credentials:"
 echo -e " - minio:\t${MINIO_USER} ${MINIO_PASSWORD}"
 
 EndOFMessage
+```
+
+```bash
+kubectl port-forward service/nginx-ingess-nginx-ingress \
+  --namespace nginx-ingress-system \
+  8080:80
+```
