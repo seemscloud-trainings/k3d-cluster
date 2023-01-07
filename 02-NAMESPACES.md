@@ -1,8 +1,8 @@
 ```bash
 kubectl create namespace metallb-system
+kubectl create namespace nginx-ingress-system
 
 kubectl create namespace cert-manager-system
-kubectl create namespace nginx-ingress-system
 kubectl create namespace keda-system
 kubectl create namespace minio-system
 
