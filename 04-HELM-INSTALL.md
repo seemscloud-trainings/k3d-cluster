@@ -53,6 +53,30 @@ helm upgrade --install nginx-ingess nginx-stable/nginx-ingress \
   --set-string controller.config.entries.http2=true \
   --set controller.kind=daemonset
 
+helm upgrade --install minio minio/minio \
+  --version 5.0.1 \
+  --namespace minio-system \
+  --set replicas=2 \
+  --set consoleService.type=LoadBalancer \
+  --set consoleService.port=8080 \
+  --set persistence.enabled=false \
+  --set service.type=LoadBalancer \
+  --set service.port=9000 \
+  --set persistence.enabled=false \
+  --set extraVolumes[0].name=emptydir \
+  --set extraVolumeMounts[0].name=emptydir \
+  --set extraVolumeMounts[0].mountPath=/export
+
+helm upgrade --install jaeger jaegertracing/jaeger \
+  --version 0.65.2 \
+  --namespace tracing-system \
+  --set query.service.type=LoadBalancer \
+  --set query.service.port=8080
+```
+
+### Istio
+
+```bash
 helm upgrade --install istio-base istio/base \
   --version 1.16.0 \
   --namespace istio-system
@@ -89,26 +113,6 @@ helm upgrade --install kiali kiali/kiali-server \
   --set external_services.tracing.enabled=true \
   --set external_services.tracing.enabled=true \
   --set external_services.tracing.in_cluster_url=http://jaeger-query.tracing-system:16685
-
-helm upgrade --install minio minio/minio \
-  --version 5.0.1 \
-  --namespace minio-system \
-  --set replicas=2 \
-  --set consoleService.type=LoadBalancer \
-  --set consoleService.port=8080 \
-  --set persistence.enabled=false \
-  --set service.type=LoadBalancer \
-  --set service.port=9000 \
-  --set persistence.enabled=false \
-  --set extraVolumes[0].name=emptydir \
-  --set extraVolumeMounts[0].name=emptydir \
-  --set extraVolumeMounts[0].mountPath=/export
-
-helm upgrade --install jaeger jaegertracing/jaeger \
-  --version 0.65.2 \
-  --namespace tracing-system \
-  --set query.service.type=LoadBalancer \
-  --set query.service.port=8080
 ```
 
 ## Logging
