@@ -1,3 +1,61 @@
+## CD / CD
+
+```bash
+helm upgrade --install argocd argo/argo-cd \
+  --version 5.16.1 \
+  --namespace argocd-system \
+  --set configs.params."server\.disable\.auth"=true \
+  --set configs.params."server\.insecure"=true \
+  --set server.service.type=LoadBalancer \
+  --set server.service.servicePortHttp=8080 \
+  --set server.service.servicePortHttps=8443
+```
+
+## Accessibility
+
+```bash
+helm upgrade --install metallb metallb/metallb \
+  --version 0.13.4 \
+  --namespace metallb-system
+
+helm upgrade --install nginx-ingess nginx-stable/nginx-ingress \
+  --version 0.15.2 \
+  --namespace nginx-ingress-system \
+  --set controller.name=nginx-ingress \
+  --set controller.nginxDebug=true \
+  --set-string controller.config.entries.http2=true \
+  --set controller.kind=daemonset
+```
+
+## Tools
+
+```bash
+helm upgrade --install keda kedacore/keda \
+  --version 2.8.2 \
+  --namespace keda-system
+  
+helm upgrade --install cert-manager jetstack/cert-manager \
+  --version v1.7.2 \
+  --namespace cert-manager-system \
+  --set installCRDs=true
+
+helm upgrade --install minio minio/minio \
+  --version 5.0.1 \
+  --namespace minio-system \
+  --set replicas=2 \
+  --set consoleService.type=LoadBalancer \
+  --set consoleService.port=8080 \
+  --set persistence.enabled=false \
+  --set service.type=LoadBalancer \
+  --set service.port=9000 \
+  --set persistence.enabled=false \
+  --set extraVolumes[0].name=emptydir \
+  --set extraVolumeMounts[0].name=emptydir \
+  --set extraVolumeMounts[0].mountPath=/export
+```
+
+## Metrics / Tracing
+
 ```bash
 helm upgrade --install prometheus prometheus-community/prometheus \
   --version 19.0.1 \
@@ -22,50 +80,6 @@ helm upgrade --install grafana grafana/grafana \
   --set datasources.'datasources\.yaml'.datasources[0].type=prometheus \
   --set datasources.'datasources\.yaml'.datasources[0].url=http://prometheus-server:8080 \
   --set datasources.'datasources\.yaml'.datasources[0].isDefault=true
-
-helm upgrade --install argocd argo/argo-cd \
-  --version 5.16.1 \
-  --namespace argocd-system \
-  --set configs.params."server\.disable\.auth"=true \
-  --set configs.params."server\.insecure"=true \
-  --set server.service.type=LoadBalancer \
-  --set server.service.servicePortHttp=8080 \
-  --set server.service.servicePortHttps=8443
-
-helm upgrade --install keda kedacore/keda \
-  --version 2.8.2 \
-  --namespace keda-system
-
-helm upgrade --install metallb metallb/metallb \
-  --version 0.13.4 \
-  --namespace metallb-system
-
-helm upgrade --install cert-manager jetstack/cert-manager \
-  --version v1.7.2 \
-  --namespace cert-manager-system \
-  --set installCRDs=true
-
-helm upgrade --install nginx-ingess nginx-stable/nginx-ingress \
-  --version 0.15.2 \
-  --namespace nginx-ingress-system \
-  --set controller.name=nginx-ingress \
-  --set controller.nginxDebug=true \
-  --set-string controller.config.entries.http2=true \
-  --set controller.kind=daemonset
-
-helm upgrade --install minio minio/minio \
-  --version 5.0.1 \
-  --namespace minio-system \
-  --set replicas=2 \
-  --set consoleService.type=LoadBalancer \
-  --set consoleService.port=8080 \
-  --set persistence.enabled=false \
-  --set service.type=LoadBalancer \
-  --set service.port=9000 \
-  --set persistence.enabled=false \
-  --set extraVolumes[0].name=emptydir \
-  --set extraVolumeMounts[0].name=emptydir \
-  --set extraVolumeMounts[0].mountPath=/export
 
 helm upgrade --install jaeger jaegertracing/jaeger \
   --version 0.65.2 \
