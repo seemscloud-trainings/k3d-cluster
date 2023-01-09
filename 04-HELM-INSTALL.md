@@ -179,6 +179,7 @@ logstashPipeline:
             target => "@message"
             skip_on_invalid_json => true
             tag_on_failure => ["fail/json"]
+            decorate_events => "extended"
         }
         ruby {
             code =>'
