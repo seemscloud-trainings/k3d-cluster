@@ -228,14 +228,16 @@ logstashPipeline:
                 event.remove(source_field)
             '
         }
+        
+        mutate { add_field => { "[@metadata][target_index]" => "prod-unknown" } }
     }
     output {
       elasticsearch { 
         hosts => "https://elasticsearch-aio:9200"
         user => "elastic"
-        password => "2hZdz7Re3Jt4AS3J60Nx"
-        index => "logs"
+        password => "7oRPxyP0GtQiMA93CWOE"
         ssl_certificate_verification => false
+        index => "%{[@metadata][target_index]}"
       }
     }
 EndOfMessage
