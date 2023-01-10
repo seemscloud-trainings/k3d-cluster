@@ -54,7 +54,7 @@ helm upgrade --install minio minio/minio \
   --set extraVolumeMounts[0].mountPath=/export
 ```
 
-## Metrics / Tracing
+## Metrics
 
 ```bash
 helm upgrade --install prometheus prometheus-community/prometheus \
@@ -80,7 +80,11 @@ helm upgrade --install grafana grafana/grafana \
   --set datasources.'datasources\.yaml'.datasources[0].type=prometheus \
   --set datasources.'datasources\.yaml'.datasources[0].url=http://prometheus-server:8080 \
   --set datasources.'datasources\.yaml'.datasources[0].isDefault=true
+```
 
+## Tracing
+
+```bash
 helm upgrade --install jaeger jaegertracing/jaeger \
   --version 0.65.2 \
   --namespace tracing-system \
@@ -114,7 +118,7 @@ helm upgrade --install kibana elastic/kibana \
   --set service.type=LoadBalancer
 ```
 
-### Istio
+## Istio
 
 ```bash
 helm upgrade --install istio-base istio/base \
