@@ -85,16 +85,6 @@ helm upgrade --install grafana grafana/grafana \
 ## Tracing
 
 ```bash
-helm upgrade --install jaeger jaegertracing/jaeger \
-  --version 0.65.2 \
-  --namespace tracing-system \
-  --set query.service.type=LoadBalancer \
-  --set query.service.port=8080 \
-  --set storage.type=elasticsearch \
-  --set provisionDataStore.cassandra=false \
-  --set storage.elasticsearch.host=elasticsearch-aio \
-  --set storage.elasticsearch.usePassword=false
-
 helm upgrade --install elasticsearch elastic/elasticsearch \
   --version 7.17.3 \
   --namespace tracing-system \
@@ -116,6 +106,16 @@ helm upgrade --install kibana elastic/kibana \
   --set elasticsearchHosts="http://elasticsearch-aio:9200" \
   --set replicas=1 \
   --set service.type=LoadBalancer
+  
+helm upgrade --install jaeger jaegertracing/jaeger \
+  --version 0.65.2 \
+  --namespace tracing-system \
+  --set query.service.type=LoadBalancer \
+  --set query.service.port=8080 \
+  --set storage.type=elasticsearch \
+  --set provisionDataStore.cassandra=false \
+  --set storage.elasticsearch.host=elasticsearch-aio \
+  --set storage.elasticsearch.usePassword=false
 ```
 
 ## Istio
