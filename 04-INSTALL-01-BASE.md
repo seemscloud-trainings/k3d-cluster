@@ -1,4 +1,16 @@
-## CD / CD
+## Base
+```bash
+helm upgrade --install metallb metallb/metallb \
+  --version 0.13.4 \
+  --namespace metallb-system
+
+helm upgrade --install cert-manager jetstack/cert-manager \
+  --version v1.7.2 \
+  --namespace cert-manager-system \
+  --set installCRDs=true
+```
+
+## Others
 
 ```bash
 helm upgrade --install argocd argo/argo-cd \
@@ -9,14 +21,6 @@ helm upgrade --install argocd argo/argo-cd \
   --set server.service.type=LoadBalancer \
   --set server.service.servicePortHttp=8080 \
   --set server.service.servicePortHttps=8443
-```
-
-## Accessibility
-
-```bash
-helm upgrade --install metallb metallb/metallb \
-  --version 0.13.4 \
-  --namespace metallb-system
 
 helm upgrade --install nginx-ingess nginx-stable/nginx-ingress \
   --version 0.15.2 \
@@ -25,19 +29,10 @@ helm upgrade --install nginx-ingess nginx-stable/nginx-ingress \
   --set controller.nginxDebug=true \
   --set-string controller.config.entries.http2=true \
   --set controller.kind=daemonset
-```
 
-## Tools
-
-```bash
 helm upgrade --install keda kedacore/keda \
   --version 2.8.2 \
   --namespace keda-system
-  
-helm upgrade --install cert-manager jetstack/cert-manager \
-  --version v1.7.2 \
-  --namespace cert-manager-system \
-  --set installCRDs=true
 
 helm upgrade --install minio minio/minio \
   --version 5.0.1 \
@@ -52,11 +47,7 @@ helm upgrade --install minio minio/minio \
   --set extraVolumes[0].name=emptydir \
   --set extraVolumeMounts[0].name=emptydir \
   --set extraVolumeMounts[0].mountPath=/export
-```
 
-## Metrics
-
-```bash
 helm upgrade --install prometheus prometheus-community/prometheus \
   --version 19.0.1 \
   --namespace metrics-system \
