@@ -1,5 +1,3 @@
-## Redpanda
-
 ```bash
 helm upgrade --install redpanda redpanda/redpanda \
   --version 2.4.0 \
@@ -21,8 +19,6 @@ helm upgrade --install redpanda-console redpanda/console \
   --set console.config.kafka.brokers[1]=redpanda-1.redpanda:9093 \
   --set console.config.kafka.brokers[2]=redpanda-2.redpanda:9093
 ```
-
-## Logstash
 
 ```bash
 cat >logstash.yaml <<"EndOfMessage"
@@ -125,8 +121,6 @@ helm upgrade --install logstash elastic/logstash \
   --set fullnameOverride=logstash \
   -f logstash.yaml
 ```
-
-## Collectors
 
 ```bash
 helm upgrade --install logging-operator banzaicloud-stable/logging-operator \
