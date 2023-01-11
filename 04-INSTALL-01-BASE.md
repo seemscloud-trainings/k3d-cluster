@@ -71,11 +71,7 @@ helm upgrade --install grafana grafana/grafana \
   --set datasources.'datasources\.yaml'.datasources[0].type=prometheus \
   --set datasources.'datasources\.yaml'.datasources[0].url=http://prometheus-server:8080 \
   --set datasources.'datasources\.yaml'.datasources[0].isDefault=true
-```
 
-## Tracing
-
-```bash
 helm upgrade --install elasticsearch elastic/elasticsearch \
   --version 7.17.3 \
   --namespace tracing-system \
@@ -107,11 +103,7 @@ helm upgrade --install jaeger jaegertracing/jaeger \
   --set provisionDataStore.cassandra=false \
   --set storage.elasticsearch.host=elasticsearch-aio \
   --set storage.elasticsearch.usePassword=false
-```
 
-## Istio
-
-```bash
 helm upgrade --install istio-base istio/base \
   --version 1.16.0 \
   --namespace istio-system
