@@ -53,6 +53,7 @@ EndOfMessage
 helm upgrade --install metricbeat elastic/metricbeat \
   --version 7.17.3 \
   --namespace metrics-system \
+  --set fullnameOverride=metricbeat \
   --set daemonset.enabled=true \
   --set deployment.enabled=false \
   --set daemonset.tolerations[0].key=dedicated \
