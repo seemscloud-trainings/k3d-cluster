@@ -46,5 +46,5 @@ helm upgrade --install kibana elastic/kibana \
   --set extraEnvs[1].name=ELASTICSEARCH_USERNAME \
   --set extraEnvs[1].value=elastic \
   --set extraEnvs[2].name=ELASTICSEARCH_PASSWORD \
-  --set extraEnvs[2].value=nmHC8eIAZSoS2vn1UxV3
+  --set extraEnvs[2].value=elastic
 ```
