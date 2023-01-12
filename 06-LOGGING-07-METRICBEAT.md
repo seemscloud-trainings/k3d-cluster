@@ -44,7 +44,7 @@ daemonset:
         - drop_event.when.regexp:
             system.filesystem.mount_point: '^/(sys|cgroup|proc|dev|etc|host|lib)($|/)'
       output.kafka:
-        hosts: ["redpanda-0.redpanda:9093", "redpanda-1.redpanda:9093", "redpanda-2.redpanda:9093"]
+        hosts: ["redpanda:9093"]
         topic: metrics
         required_acks: 1
         compression: gzip
