@@ -12,7 +12,7 @@ logstashPipeline:
     input {
       kafka {
         consumer_threads => 1
-        bootstrap_servers => "redpanda:9093"
+        bootstrap_servers => "redpanda.logging-system.svc:9093,redpanda.logging-system.svc:9093,redpanda.logging-system.svc:9093"
         topics => ["logs", "metrics"]
         codec => "json"
         group_id => "logstash"
