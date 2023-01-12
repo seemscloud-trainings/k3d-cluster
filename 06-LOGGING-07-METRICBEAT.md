@@ -58,6 +58,6 @@ helm upgrade --install metricbeat elastic/metricbeat \
   --set deployment.enabled=false \
   --set daemonset.tolerations[0].key=dedicated \
   --set daemonset.tolerations[0].value=control-plane \
-  --set daemonset.tolerations[0].effect=NoSchedule
+  --set daemonset.tolerations[0].effect=NoSchedule \
   -f metricbeat.yaml
 ```
