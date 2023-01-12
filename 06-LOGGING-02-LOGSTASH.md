@@ -95,6 +95,7 @@ EndOfMessage
 helm upgrade --install logstash elastic/logstash \
   --version 8.5.1 \
   --namespace logging-system \
+  --set replicas=3 \
   --set terminationGracePeriod=0 \
   --set fullnameOverride=logstash \
   -f logstash.yaml
