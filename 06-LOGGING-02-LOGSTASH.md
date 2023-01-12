@@ -85,7 +85,7 @@ logstashPipeline:
       elasticsearch { 
         hosts => "https://elasticsearch-aio:9200"
         user => "elastic"
-        password => "7oRPxyP0GtQiMA93CWOE"
+        password => "elastic"
         ssl_certificate_verification => false
         index => "%{[@metadata][target_index]}"
       }
