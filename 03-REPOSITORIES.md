@@ -18,6 +18,8 @@ helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
 helm repo add elastic https://helm.elastic.co
 helm repo add redpanda https://charts.redpanda.com
 helm repo add banzaicloud-stable https://kubernetes-charts.banzaicloud.com
+
+helm repo add stakater https://stakater.github.io/stakater-charts
 ```
 
 ```bash
