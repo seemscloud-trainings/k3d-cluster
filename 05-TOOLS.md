@@ -1,6 +1,7 @@
 ```bash
 helm upgrade \
   --version 0.22.0 \
+  --namespace vault-system \
   --install vault hashicorp/vault \
   --set "ui.enabled=true" \
   --set "ui.serviceType=LoadBalancer" \
