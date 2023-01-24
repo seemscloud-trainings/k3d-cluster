@@ -10,6 +10,11 @@ kubectl config delete-context k3d-${CLUSTER_NAME}
 ```
 
 ```bash
+kubectl config set-context k3d-${CLUSTER_NAME}-vault-system \
+                --cluster k3d-${CLUSTER_NAME} \
+                --user admin@k3d-${CLUSTER_NAME} \
+                --namespace vault-system
+                
 kubectl config set-context k3d-${CLUSTER_NAME}-kube-system \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
