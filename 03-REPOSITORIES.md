@@ -1,4 +1,6 @@
 ```bash
+helm repo add hashicorp https://helm.releases.hashicorp.com
+
 helm repo add metallb https://metallb.github.io/metallb
 helm repo add nginx-stable https://helm.nginx.com/stable
 
