@@ -1,4 +1,6 @@
 ```bash
+kubectl create namespace vault-system
+
 kubectl create namespace metallb-system
 kubectl create namespace nginx-ingress-system
 
