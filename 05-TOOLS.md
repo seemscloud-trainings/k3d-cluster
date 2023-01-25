@@ -18,15 +18,15 @@ helm upgrade \
 kubectl exec -ti vault-0 -- vault operator init -key-shares="1" -key-threshold="1" -format="json"
 kubectl exec -ti vault-0 -- vault operator unseal
 
-kubectl exec -ti vault-0 -- vault status
-kubectl exec -ti vault-1 -- vault status
-kubectl exec -ti vault-2 -- vault status
-
 kubectl exec -ti vault-1 -- vault operator raft join http://vault-0.vault-internal:8200
 kubectl exec -ti vault-2 -- vault operator raft join http://vault-0.vault-internal:8200
 
 kubectl exec -ti vault-1 -- vault operator unseal
 kubectl exec -ti vault-2 -- vault operator unseal
+
+kubectl exec -ti vault-0 -- vault status
+kubectl exec -ti vault-1 -- vault status
+kubectl exec -ti vault-2 -- vault status
 ```
 
 ```bash
