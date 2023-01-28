@@ -16,7 +16,9 @@ kibanaConfig:
     server.shutdownTimeout: "5s"
     elasticsearch.ssl.verificationMode: "certificate"
 EndOfMessage
+```
 
+```bash
 helm upgrade --install elasticsearch elastic/elasticsearch \
   --version 7.17.3 \
   --set masterService=elasticsearch-aio \
