@@ -17,6 +17,7 @@ helm upgrade --install logging-operator-logging banzaicloud-stable/logging-opera
   --set clusterFlows[0].spec.filters[0].kube_events_timestamp.timestamp_fields[2]=event.firstTimestamp \
   --set clusterOutputs[0].name=kafka \
   --set clusterOutputs[0].spec.kafka.brokers="redpanda:9093" \
+  --set clusterOutputs[0].spec.kafka.compression_codec=gzip \
   --set clusterOutputs[0].spec.kafka.format.type=json \
   --set clusterOutputs[0].spec.kafka.default_topic=logs \
   --set clusterOutputs[0].spec.kafka.buffer.flush_mode=interval \
