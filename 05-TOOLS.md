@@ -117,14 +117,24 @@ helm upgrade --install istio-base istio/base \
   --version 1.17.2 \
   --namespace istio-system
 
-helm upgrade --install istio-istiod-1-17-0 istio/istiod \
-  --set revision=1-17-0 \
-  --version 1.17.0 \
-  --namespace istio-system
-  
 helm upgrade --install istio-istiod-1-17-1 istio/istiod \
   --set revision=1-17-1 \
+  --set global.configValidation=true \
+  --set pilot.autoscaleEnabled=true \
+  --set pilot.autoscaleMin=3 \
+  --set pilot.autoscaleMax=3 \
+  --set pilot.replicaCount=3 \
   --version 1.17.1 \
+  --namespace istio-system
+  
+helm upgrade --install istio-istiod-1-17-2 istio/istiod \
+  --set revision=1-17-2 \
+  --set global.configValidation=true \
+  --set pilot.autoscaleEnabled=true \
+  --set pilot.autoscaleMin=3 \
+  --set pilot.autoscaleMax=3 \
+  --set pilot.replicaCount=3 \
+  --version 1.17.2 \
   --namespace istio-system
 
 helm upgrade --install istio-ingress-gateway istio/gateway \
