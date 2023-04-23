@@ -114,57 +114,65 @@ helm upgrade --install jaeger jaegertracing/jaeger \
 
 ```bash
 helm upgrade --install istio-base istio/base \
-  --version 1.17.0 \
+  --version 1.17.2 \
   --namespace istio-system \
+  \
   --set defaultRevision=1-17-0
 
 helm upgrade --install istio-istiod-1-17-0 istio/istiod \
+  --version 1.17.0 \
+  --namespace istio-system \
+  \
   --set revision=1-17-0 \
   --set global.configValidation=true \
   --set pilot.autoscaleEnabled=true \
   --set pilot.autoscaleMin=3 \
   --set pilot.autoscaleMax=3 \
   --set pilot.replicaCount=3 \
-  --version 1.17.0 \
-  --namespace istio-system
   
 helm upgrade --install istio-istiod-1-17-2 istio/istiod \
+  --version 1.17.2 \
+  --namespace istio-system \
+  \
   --set revision=1-17-2 \
   --set global.configValidation=true \
   --set pilot.autoscaleEnabled=true \
   --set pilot.autoscaleMin=3 \
   --set pilot.autoscaleMax=3 \
   --set pilot.replicaCount=3 \
-  --version 1.17.2 \
-  --namespace istio-system
 
 helm upgrade --install istio-ingress-gateway-1-17-0 istio/gateway \
   --version 1.17.0 \
   --namespace istio-gateway-system \
+  \
   --set revision=1-17-0 \
   --set service.type=LoadBalancer
   
 helm upgrade --install istio-ingress-gateway-1-17-2 istio/gateway \
   --version 1.17.2 \
   --namespace istio-gateway-system \
+  \
   --set revision=1-17-2 \
   --set service.type=LoadBalancer
   
 helm upgrade --install istio-egress-gateway-1-17-0 istio/gateway \
   --version 1.17.0 \
   --namespace istio-gateway-system \
+  \
   --set revision=1-17-0 \
   --set service.type=ClusterIP
 
 helm upgrade --install istio-egress-gateway-1-17-2 istio/gateway \
   --version 1.17.2 \
   --namespace istio-gateway-system \
+  \
   --set revision=1-17-2 \
   --set service.type=ClusterIP
 
 helm upgrade --install kiali-1-17-0 kiali/kiali-server \
   --version 1.66.0 \
   --namespace kiali-system \
+  \
   --set fullnameOverride=kiali-1-17-0 \
   --set istio_namespace=istio-system \
   --set auth.strategy=anonymous \
@@ -184,6 +192,7 @@ helm upgrade --install kiali-1-17-0 kiali/kiali-server \
 helm upgrade --install kiali-1-17-2 kiali/kiali-server \
   --version 1.66.0 \
   --namespace kiali-system \
+  \
   --set fullnameOverride=kiali-1-17-2 \
   --set istio_namespace=istio-system \
   --set auth.strategy=anonymous \
