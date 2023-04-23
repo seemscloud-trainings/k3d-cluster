@@ -114,24 +114,21 @@ helm upgrade --install jaeger jaegertracing/jaeger \
 
 ```bash
 helm upgrade --install istio-base istio/base \
-  --version 1.16.0 \
+  --version 1.17.2 \
   --namespace istio-system
 
-#helm upgrade --install istio-cni istio/cni \
-#  --version 1.16.0 \
-#  --namespace kube-system
-
 helm upgrade --install istio-istiod istio/istiod \
-  --version 1.16.0 \
+  --set revision=canary \
+  --version 1.17.2 \
   --namespace istio-system
 
 helm upgrade --install istio-ingress-gateway istio/gateway \
-  --version 1.16.0 \
+  --version 1.17.2 \
   --namespace istio-gateway-system \
   --set service.type=LoadBalancer
   
 helm upgrade --install istio-egress-gateway istio/gateway \
-  --version 1.16.0 \
+  --version 1.17.2 \
   --namespace istio-gateway-system \
   --set service.type=ClusterIP
 
