@@ -15,9 +15,10 @@ k3d cluster create \
   --k3s-arg "--service-cidr=10.200.0.0/16@server:*" \
   --k3s-arg "--disable=traefik@server:*" \
   --k3s-arg "--disable=servicelb@server:*" \
-  --k3s-arg "--disable=metrics-server@server:*" \
   --no-lb \
   ${CLUSTER_NAME}
+
+#   --k3s-arg "--disable=metrics-server@server:*" \
 
 for i in `seq 0 $(("${SERVERS}"-1))` ; do
   kubectl taint nodes "k3d-${CLUSTER_NAME}-server-$i" dedicated=control-plane:NoSchedule
