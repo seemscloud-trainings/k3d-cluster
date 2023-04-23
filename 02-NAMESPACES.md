@@ -16,7 +16,7 @@ kubectl create namespace kiali-system
 
 kubectl create namespace metrics-system
 
-kubectl create namespace tracing-system
+kubectl create namespace istio-tracing-system
 
 kubectl create namespace logging-system
 ```
