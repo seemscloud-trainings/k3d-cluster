@@ -70,10 +70,10 @@ kubectl config set-context k3d-${CLUSTER_NAME}-metrics-system \
                 --user admin@k3d-${CLUSTER_NAME} \
                 --namespace metrics-system
 
-kubectl config set-context k3d-${CLUSTER_NAME}-tracing-system \
+kubectl config set-context k3d-${CLUSTER_NAME}-istio-tracing-system \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
-                --namespace tracing-system
+                --namespace istio-tracing-system
 
 kubectl config set-context k3d-${CLUSTER_NAME}-logging-system \
                 --cluster k3d-${CLUSTER_NAME} \
