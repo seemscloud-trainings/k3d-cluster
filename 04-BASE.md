@@ -1,6 +1,6 @@
 ```bash
 helm upgrade --install metallb metallb/metallb \
-  --version 0.13.4 \
+  --version 0.13.9 \
   --namespace metallb-system
 
 helm upgrade --install cert-manager jetstack/cert-manager \
