@@ -114,17 +114,18 @@ helm upgrade --install jaeger jaegertracing/jaeger \
 
 ```bash
 helm upgrade --install istio-base istio/base \
-  --version 1.17.2 \
-  --namespace istio-system
+  --version 1.17.0 \
+  --namespace istio-system \
+  --set defaultRevision=1-17-0
 
-helm upgrade --install istio-istiod-1-17-1 istio/istiod \
-  --set revision=1-17-1 \
+helm upgrade --install istio-istiod-1-17-0 istio/istiod \
+  --set revision=1-17-0 \
   --set global.configValidation=true \
   --set pilot.autoscaleEnabled=true \
   --set pilot.autoscaleMin=3 \
   --set pilot.autoscaleMax=3 \
   --set pilot.replicaCount=3 \
-  --version 1.17.1 \
+  --version 1.17.0 \
   --namespace istio-system
   
 helm upgrade --install istio-istiod-1-17-2 istio/istiod \
@@ -147,18 +148,18 @@ helm upgrade --install istio-egress-gateway istio/gateway \
   --namespace istio-gateway-system \
   --set service.type=ClusterIP
 
-helm upgrade --install kiali-1-17-1 kiali/kiali-server \
+helm upgrade --install kiali-1-17-0 kiali/kiali-server \
   --version 1.66.0 \
   --namespace kiali-system \
-  --set fullnameOverride=kiali-1-17-1 \
+  --set fullnameOverride=kiali-1-17-0 \
   --set istio_namespace=istio-system \
   --set auth.strategy=anonymous \
   --set server.port=8080 \
   --set deployment.service_type=LoadBalancer \
   --set kiali_feature_flags.istio_upgrade_action=true \
-  --set external_services.istio.istiod_deployment_name=istiod-1-17-1 \
-  --set external_services.istio.config_map_name=istio-1-17-1 \
-  --set external_services.istio.istio_sidecar_injector_config_map_name=istio-sidecar-injector-1-17-1 \
+  --set external_services.istio.istiod_deployment_name=istiod-1-17-0 \
+  --set external_services.istio.config_map_name=istio-1-17-0 \
+  --set external_services.istio.istio_sidecar_injector_config_map_name=istio-sidecar-injector-1-17-0 \
   --set external_services.grafana.enabled=true \
   --set external_services.grafana.in_cluster_url=http://grafana.metrics-system:8080 \
   --set external_services.prometheus.enabled=true \
