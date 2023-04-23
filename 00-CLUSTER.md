@@ -18,8 +18,6 @@ k3d cluster create \
   --no-lb \
   ${CLUSTER_NAME}
 
-#   --k3s-arg "--disable=metrics-server@server:*" \
-
 for i in `seq 0 $(("${SERVERS}"-1))` ; do
   kubectl taint nodes "k3d-${CLUSTER_NAME}-server-$i" dedicated=control-plane:NoSchedule
 done
