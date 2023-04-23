@@ -146,7 +146,8 @@ helm upgrade --install kibana elastic/kibana \
   \
   --set elasticsearchHosts="http://elasticsearch:9200" \
   --set replicas=1 \
-  --set service.type=LoadBalancer
+  --set service.type=LoadBalancer \
+  --set service.port=8080
   
 helm upgrade --install jaeger jaegertracing/jaeger \
   --version 0.65.2 \
