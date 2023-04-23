@@ -92,7 +92,7 @@ helm upgrade --install kiali-1-17-0 kiali/kiali-server \
   --set external_services.prometheus.enabled=true \
   --set external_services.prometheus.url=http://prometheus-server.metrics-system:8080 \
   --set external_services.tracing.enabled=true \
-  --set external_services.tracing.in_cluster_url=http://jaeger-query.tracing-system:16685
+  --set external_services.tracing.in_cluster_url=http://jaeger-query.istio-tracing-system:16685
   
 helm upgrade --install kiali-1-17-2 kiali/kiali-server \
   --version 1.66.0 \
@@ -117,18 +117,18 @@ helm upgrade --install kiali-1-17-2 kiali/kiali-server \
   --set external_services.prometheus.enabled=true \
   --set external_services.prometheus.url=http://prometheus-server.metrics-system:8080 \
   --set external_services.tracing.enabled=true \
-  --set external_services.tracing.in_cluster_url=http://jaeger-query.tracing-system:16685
+  --set external_services.tracing.in_cluster_url=http://jaeger-query.istio-tracing-system:16685
 ```
 
-## Istio Tracing
+## Tracing
 
 ```bash
-helm upgrade --install istio-tracing-es elastic/elasticsearch \
+helm upgrade --install elasticsearch elastic/elasticsearch \
   --version 7.17.3 \
   --namespace istio-tracing-system \
-  --set fullnameOverride=istio-tracing-es \
+  --set fullnameOverride=elasticsearch \
   \
-  --set masterService=istio-tracing-es-aio \
+  --set masterService=elasticsearch \
   --set nodeGroup=aio \
   --set replicas=3 \
   --set minimumMasterNodes=3 \
@@ -139,24 +139,24 @@ helm upgrade --install istio-tracing-es elastic/elasticsearch \
   --set-string extraEnvs[0].name=xpack.security.enabled \
   --set-string extraEnvs[0].value=false
   
-helm upgrade --install istio-tracing-kb elastic/kibana \
+helm upgrade --install kibana elastic/kibana \
   --version 7.17.3 \
   --namespace istio-tracing-system \
-  --set fullnameOverride=istio-tracing-kb \
+  --set fullnameOverride=kibana \
   \
-  --set elasticsearchHosts="http://elasticsearch-aio:9200" \
+  --set elasticsearchHosts="http://elasticsearch:9200" \
   --set replicas=1 \
   --set service.type=LoadBalancer
   
-helm upgrade --install istio-tracing-jaeger jaegertracing/jaeger \
+helm upgrade --install jaeger jaegertracing/jaeger \
   --version 0.65.2 \
   --namespace istio-tracing-system \
-  --set fullnameOverride=istio-tracing-jaeger \
+  --set fullnameOverride=jaeger \
   \
   --set query.service.type=LoadBalancer \
   --set query.service.port=8080 \
   --set storage.type=elasticsearch \
   --set provisionDataStore.cassandra=false \
-  --set storage.elasticsearch.host=elasticsearch-aio \
+  --set storage.elasticsearch.host=elasticsearch \
   --set storage.elasticsearch.usePassword=false
 ```
