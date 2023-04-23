@@ -117,9 +117,14 @@ helm upgrade --install istio-base istio/base \
   --version 1.17.2 \
   --namespace istio-system
 
-helm upgrade --install istio-istiod istio/istiod \
-  --set revision=canary \
-  --version 1.17.2 \
+helm upgrade --install istio-istiod-1-17-0 istio/istiod \
+  --set revision=1-17-0 \
+  --version 1.17.0 \
+  --namespace istio-system
+  
+helm upgrade --install istio-istiod-1-17-1 istio/istiod \
+  --set revision=1-17-1 \
+  --version 1.17.1 \
   --namespace istio-system
 
 helm upgrade --install istio-ingress-gateway istio/gateway \
