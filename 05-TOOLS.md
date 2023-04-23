@@ -138,14 +138,28 @@ helm upgrade --install istio-istiod-1-17-2 istio/istiod \
   --version 1.17.2 \
   --namespace istio-system
 
-helm upgrade --install istio-ingress-gateway istio/gateway \
-  --version 1.17.2 \
+helm upgrade --install istio-ingress-gateway-1-17-0 istio/gateway \
+  --version 1.17.0 \
   --namespace istio-gateway-system \
+  --set revision=1-17-0 \
   --set service.type=LoadBalancer
   
-helm upgrade --install istio-egress-gateway istio/gateway \
+helm upgrade --install istio-ingress-gateway-1-17-2 istio/gateway \
   --version 1.17.2 \
   --namespace istio-gateway-system \
+  --set revision=1-17-2 \
+  --set service.type=LoadBalancer
+  
+helm upgrade --install istio-egress-gateway-1-17-0 istio/gateway \
+  --version 1.17.0 \
+  --namespace istio-gateway-system \
+  --set revision=1-17-0 \
+  --set service.type=ClusterIP
+
+helm upgrade --install istio-egress-gateway-1-17-2 istio/gateway \
+  --version 1.17.2 \
+  --namespace istio-gateway-system \
+  --set revision=1-17-2 \
   --set service.type=ClusterIP
 
 helm upgrade --install kiali-1-17-0 kiali/kiali-server \
