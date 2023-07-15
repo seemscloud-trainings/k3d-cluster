@@ -9,7 +9,7 @@ kubectl create namespace keda-system
 kubectl create namespace minio-system
 
 kubectl create namespace argocd-system
-kubectl create namespace argo-workflows-system
+kubectl create namespace argo-system
 
 kubectl create namespace istio-system
 kubectl create namespace istio-gateway-system
