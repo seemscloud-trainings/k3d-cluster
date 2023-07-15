@@ -45,11 +45,6 @@ kubectl config set-context k3d-${CLUSTER_NAME}-argo-system \
                 --user admin@k3d-${CLUSTER_NAME} \
                 --namespace argo-system
 
-kubectl config set-context k3d-${CLUSTER_NAME}-argo-workflows-system \
-                --cluster k3d-${CLUSTER_NAME} \
-                --user admin@k3d-${CLUSTER_NAME} \
-                --namespace argo-workflows-system
-
 kubectl config set-context k3d-${CLUSTER_NAME}-keda-system \
                 --cluster k3d-${CLUSTER_NAME} \
                 --user admin@k3d-${CLUSTER_NAME} \
