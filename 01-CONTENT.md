@@ -1,5 +1,6 @@
 ```bash
 cat > k3d-"${CLUSTER_NAME}-namespaces.txt" << "EndOfMessage"
+workspace
 vault-system
 kube-system
 metallb-system
