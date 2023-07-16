@@ -23,6 +23,6 @@ for i in `seq 0 $(("${SERVERS}"-1))` ; do
 done
 
 for i in `seq 3 $(("${AGENTS}"-1))` ; do
-  kubectl taint nodes "k3d-${CLUSTER_NAME}-agent-$i" dedicated=infrastructure:NoSchedule
+  kubectl taint nodes "k3d-${CLUSTER_NAME}-agent-$i" dedicated=builder:NoSchedule
 done
 ```
