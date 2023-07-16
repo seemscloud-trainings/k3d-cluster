@@ -2,7 +2,9 @@
 CLUSTER_NAME="seems"
 
 k3d cluster delete "${CLUSTER_NAME}"
+```
 
+```bash
 SERVERS=3
 AGENTS=6
 
