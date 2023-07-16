@@ -30,10 +30,10 @@ EndOfMessage
 ```
 
 ```bash
-for $NAMESPACE in `cat k3d-"${CLUSTER_NAME}-namespaces.txt"` ; do
-  kubectl config set-context "k3d-${CLUSTER_NAME}-${NAMESPACE}" \
-    --cluster "k3d-${CLUSTER_NAME}" \
-    --user "admin@k3d-${CLUSTER_NAME}" \
-    --namespace "${NAMESPACE}"
+for NAMESPACE in `cat "k3d-${CLUSTER_NAME}-namespaces.txt"` ; do
+    kubectl config set-context "k3d-${CLUSTER_NAME}-${NAMESPACE}" \
+        --cluster "k3d-${CLUSTER_NAME}" \
+        --user "admin@k3d-${CLUSTER_NAME}" \
+        --namespace "${NAMESPACE}"
 done
 ```
