@@ -15,6 +15,19 @@ k3d cluster create \
   --k3s-arg "--disable=traefik@server:*" \
   --k3s-arg "--disable=servicelb@server:*" \
   --no-lb ${CLUSTER_NAME}
+```
 
+```bash
+for i in `seq 0 3` ; do
+  kubectl taint nodes "k3d-${CLUSTER_NAME}-server-$i" dedicated=control-plane:NoSchedule
+done
 
+for i in `seq 0 2` ; do
+  kubectl label node k3d-${CLUSTER_NAME}-agent-${i} node-role.kubernetes.io/generic=true
+done
+
+for i in `seq 3 5` ; do
+  kubectl taint nodes "k3d-${CLUSTER_NAME}-agent-${i}" dedicated=builder:NoSchedule
+  kubectl label node k3d-${CLUSTER_NAME}-agent-${i} node-role.kubernetes.io/builder=true
+done
 ```
