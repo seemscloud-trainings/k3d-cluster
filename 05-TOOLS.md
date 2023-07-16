@@ -47,6 +47,7 @@ helm upgrade --install keda kedacore/keda \
 helm upgrade --install minio minio/minio \
   --version 5.0.1 \
   --namespace minio-system \
+  --set fullnameOverride=minio \
   --set replicas=2 \
   --set consoleService.type=LoadBalancer \
   --set consoleService.port=8080 \
