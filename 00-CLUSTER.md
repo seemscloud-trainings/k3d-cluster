@@ -18,7 +18,7 @@ k3d cluster create \
 ```
 
 ```bash
-for i in `seq 0 3` ; do
+for i in `seq 0 2` ; do
   kubectl taint nodes "k3d-${CLUSTER_NAME}-server-$i" dedicated=control-plane:NoSchedule
 done
 
