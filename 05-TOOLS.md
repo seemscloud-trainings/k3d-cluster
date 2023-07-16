@@ -56,5 +56,7 @@ helm upgrade --install minio minio/minio \
   --set service.port=9000 \
   --set extraVolumes[0].name=emptydir \
   --set extraVolumeMounts[0].name=emptydir \
-  --set extraVolumeMounts[0].mountPath=/export
+  --set extraVolumeMounts[0].mountPath=/export \
+  --set rootUser=root \
+  --set rootPassword="Root123\!@#" \
 ```
