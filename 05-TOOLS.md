@@ -53,7 +53,6 @@ helm upgrade --install minio minio/minio \
   --set persistence.enabled=false \
   --set service.type=LoadBalancer \
   --set service.port=9000 \
-  --set persistence.enabled=false \
   --set extraVolumes[0].name=emptydir \
   --set extraVolumeMounts[0].name=emptydir \
   --set extraVolumeMounts[0].mountPath=/export
