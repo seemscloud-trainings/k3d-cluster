@@ -10,7 +10,7 @@ kubectl config delete-context k3d-${CLUSTER_NAME}
 ```
 
 ```bash
-cat > k3d-"${CLUSTER_NAME}-namespace.txt" << "EndOfMessage"
+cat > k3d-"${CLUSTER_NAME}-namespaces.txt" << "EndOfMessage"
 vault-system
 kube-system
 metallb-system
@@ -30,7 +30,7 @@ EndOfMessage
 ```
 
 ```bash
-for $NAMESPACE in `cat k3d-"${CLUSTER_NAME}-namespace.txt"` ; do
+for $NAMESPACE in `cat k3d-"${CLUSTER_NAME}-namespaces.txt"` ; do
   kubectl config set-context k3d-${CLUSTER_NAME}-"${NAMESPACE}" \
     --cluster k3d-${CLUSTER_NAME} \
     --user admin@k3d-${CLUSTER_NAME} \
