@@ -1,9 +1,9 @@
 ```bash
-k3d cluster delete "${CLUSTER_NAME}"
+export CLUSTER_NAME=seems
 ```
 
 ```bash
-export CLUSTER_NAME=seems
+k3d cluster delete "${CLUSTER_NAME}"
 ```
 
 ```bash
