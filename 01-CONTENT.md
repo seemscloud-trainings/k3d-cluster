@@ -16,6 +16,7 @@ minio-system
 metrics-system
 istio-tracing-system
 logging-system
+jenkins-system
 EndOfMessage
 ```
 
