@@ -9,6 +9,7 @@ helm repo add kedacore https://kedacore.github.io/charts
 helm repo add minio https://charts.min.io
 
 helm repo add argo https://argoproj.github.io/argo-helm
+helm repo add jenkins https://charts.jenkins.io
 
 helm repo add istio https://istio-release.storage.googleapis.com/charts
 helm repo add kiali https://kiali.org/helm-charts
