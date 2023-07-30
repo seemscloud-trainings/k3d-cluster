@@ -22,14 +22,8 @@ for i in `seq 0 2` ; do
   kubectl taint nodes "k3d-${CLUSTER_NAME}-server-$i" dedicated=control-plane:NoSchedule
 done
 
-for i in `seq 0 2` ; do
+for i in `seq 0 5` ; do
   kubectl label node k3d-${CLUSTER_NAME}-agent-${i} node-role.kubernetes.io/generic=true
-  kubectl label node k3d-${CLUSTER_NAME}-agent-${i} node-role.kubernetes.io/worker=true
-done
-
-for i in `seq 3 5` ; do
-  kubectl taint nodes "k3d-${CLUSTER_NAME}-agent-${i}" dedicated=builder:NoSchedule
-  kubectl label node k3d-${CLUSTER_NAME}-agent-${i} node-role.kubernetes.io/builder=true
   kubectl label node k3d-${CLUSTER_NAME}-agent-${i} node-role.kubernetes.io/worker=true
 done
 ```
