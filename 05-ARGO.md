@@ -13,7 +13,7 @@ helm upgrade \
     --values https://raw.githubusercontent.com/seemscloud/helm-argocd-self/main/base/argocd-apps/values.yaml \
     --values https://raw.githubusercontent.com/seemscloud/helm-argocd-self/main/overlays/seemscloud/values-argocd-apps.yaml
 
-kubectl apply -f <(kustomize build https://github.com/seemscloud/helm-argocd-self.git/overlays/seemscloud)
+kubectl apply -f <(kustomize build https://github.com/seemscloud/helm-argocd-self.git/overlays/seemscloud?ref=main)
 ```
 
 ```bash
