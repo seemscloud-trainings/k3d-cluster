@@ -8,8 +8,8 @@ helm upgrade \
     --install argocd argo/argo-cd \
     --namespace argocd-system \
     --version 5.42.0 \
-    --values "${REPO_URL_RAW}/main/base/argocd/values.yaml?ref=main" \
-    --values "${REPO_URL_RAW}/main/overlays/argocd/values.yaml?ref=main"
+    --values "${REPO_URL_RAW}/main/base/argocd/values.yaml" \
+    --values "${REPO_URL_RAW}/main/overlays/argocd/values.yaml"
 
 helm upgrade \
     --install argocd-apps argo/argocd-apps \
