@@ -1,5 +1,6 @@
 ```bash
 export PROJ_PATH="seemscloud/helm-argocd-self"
+
 export REPO_URL_RAW="https://raw.githubusercontent.com/${PROJ_PATH}"
 export REPO_URL="https://github.com/${PROJ_PATH}.git"
 
