@@ -1,4 +1,4 @@
-[ArgoCD](https://github.com/seemscloud/helm-argocd-self)
+- [https://github.com/seemscloud/helm-argocd-self](https://github.com/seemscloud/helm-argocd-self)
 
 ```bash
 helm upgrade --install argo-events argo/argo-events \
