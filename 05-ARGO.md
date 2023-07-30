@@ -1,4 +1,20 @@
-- [https://github.com/seemscloud/helm-argocd-self](https://github.com/seemscloud/helm-argocd-self)
+```bash
+helm upgrade \
+    --install argo-cd argo/argo-cd \
+    --namespace argocd-system \
+    --version 5.42.0 \
+    --values base/argo-cd/values.yaml \
+    --values overlays/seemscloud/values-argo-cd.yaml
+
+helm upgrade \
+    --install argocd-apps argo/argocd-apps \
+    --namespace argocd-system \
+    --version 1.4.0 \
+    --values base/argocd-apps/values.yaml \
+    --values overlays/seemscloud/values-argocd-apps.yaml
+
+kubectl apply -f <(kustomize build https://github.com/seemscloud/helm-argocd-self.git/overlays/seemscloud)
+```
 
 ```bash
 helm upgrade --install argo-events argo/argo-events \
