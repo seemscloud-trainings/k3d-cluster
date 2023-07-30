@@ -1,6 +1,7 @@
 ```bash
-export REPO_URL_RAW="https://raw.githubusercontent.com/seemscloud/helm-argocd-self"
-export REPO_URL="https://github.com/seemscloud/helm-argocd-self.git"
+export PROJ_PATH="seemscloud/helm-argocd-self"
+export REPO_URL_RAW="https://raw.githubusercontent.com/${PROJ_PATH}"
+export REPO_URL="https://github.com/${PROJ_PATH}.git"
 
 helm upgrade \
     --install argo-cd argo/argo-cd \
