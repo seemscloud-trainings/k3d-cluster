@@ -5,7 +5,7 @@ export REPO_URL_RAW="https://raw.githubusercontent.com/${PROJ_PATH}"
 export REPO_URL="https://github.com/${PROJ_PATH}.git"
 
 helm upgrade \
-    --install argo-cd argo/argo-cd \
+    --install argocd argo/argo-cd \
     --namespace argocd-system \
     --version 5.42.0 \
     --values "${REPO_URL_RAW}/main/base/argo-cd/values.yaml?ref=main" \
