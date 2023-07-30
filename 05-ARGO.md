@@ -11,7 +11,7 @@ helm upgrade \
     --namespace argocd-system \
     --version 5.42.0 \
     --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/argocd/values.yaml" \
-    --values "${REPO_URL_RAW}/${BRANCH_NAME}/seemscloud/values/argocd/values.yaml"
+    --values "${REPO_URL_RAW}/${BRANCH_NAME}/overlays/seemscloud/values/argocd/values.yaml"
 
 helm upgrade \
     --install argocd-apps argo/argocd-apps \
