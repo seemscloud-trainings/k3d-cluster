@@ -11,16 +11,16 @@ helm upgrade \
     --namespace argocd-system \
     --version 5.42.0 \
     --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/argocd/values.yaml" \
-    --values "${REPO_URL_RAW}/${BRANCH_NAME}/overlays/argocd/values.yaml"
+    --values "${REPO_URL_RAW}/${BRANCH_NAME}/seemscloud/values/overlays/argocd/values.yaml"
 
 helm upgrade \
     --install argocd-apps argo/argocd-apps \
     --namespace argocd-system \
     --version 1.4.0 \
     --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/argocd-apps/values.yaml" \
-    --values "${REPO_URL_RAW}/${BRANCH_NAME}/overlays/argocd-apps/values.yaml"
+    --values "${REPO_URL_RAW}/${BRANCH_NAME}/overlays/seemscloud/values/argocd-apps/values.yaml"
 
-kubectl apply -f <(kustomize build "${REPO_URL}/overlays?ref=${BRANCH_NAME}")
+kubectl apply -f <(kustomize build "${REPO_URL}/overlays/seemscloud?ref=${BRANCH_NAME}")
 ```
 
 ```bash
