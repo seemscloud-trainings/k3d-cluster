@@ -1,10 +1,3 @@
-```bash
-helm upgrade --install cert-manager jetstack/cert-manager \
-  --version v1.7.2 \
-  --namespace cert-manager-system \
-  --set installCRDs=true
-```
-
 ```bash  
 METALLB_CIDR=`docker network inspect k3d-${CLUSTER_NAME} | jq -r ".[0].IPAM.Config[0].Subnet" | awk -F'.' '{print $1"."$2"."$3"."128"/"25}'`
 
