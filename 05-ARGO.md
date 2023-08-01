@@ -51,7 +51,7 @@ helm upgrade --install argo-workflows argo/argo-workflows \
   --set extraObjects[0].data.secretKey=VXNlcjEyMyFAIw== \
   --set useDefaultArtifactRepo=true \
   --set artifactRepository.archiveLogs=true \
-  --set artifactRepository.s3.endpoint=argo-workflows-minio:9000 \
+  --set artifactRepository.s3.endpoint=minio:9000 \
   --set artifactRepository.s3.bucket=user01 \
   --set artifactRepository.s3.insecure=true \
   --set artifactRepository.s3.accessKeySecret.name=argo-workflows-minio-creds \
