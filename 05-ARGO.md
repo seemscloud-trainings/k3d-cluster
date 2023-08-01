@@ -24,47 +24,6 @@ kubectl apply -f <(kustomize build "${REPO_URL}/overlays/seemscloud?ref=${BRANCH
 ```
 
 ```bash
-helm upgrade --install argo-events argo/argo-events \
-  --version 2.2.0 \
-  --namespace argo-system \
-  --set fullnameOverride=argo-events \
-  --set crds.install=true \
-  --set crds.keep=false \
-  --set controller.name=controller-manager \
-  --set controller.replicas=1 \
-  --set controller.metrics.enabled=true \
-  --set controller.serviceAccount.create=true \
-  --set webhook.enabled=false \
-  --set webhook.name=events-webhook \
-  --set webhook.replicas=1 \
-  --set webhook.serviceAccoun.create=true
-
-helm upgrade --install argo-workflows-minio minio/minio \
-  --version 5.0.1 \
-  --namespace argo-system \
-  --set fullnameOverride=argo-workflows-minio \
-  --set replicas=2 \
-  --set consoleService.type=LoadBalancer \
-  --set consoleService.port=8080 \
-  --set service.type=LoadBalancer \
-  --set service.port=9000 \
-  --set persistence.enabled=false \
-  --set extraVolumes[0].name=emptydir \
-  --set extraVolumeMounts[0].name=emptydir \
-  --set extraVolumeMounts[0].mountPath=/export \
-  --set rootUser=root \
-  --set rootPassword="Root123\!@#" \
-  --set users[0].accessKey=user01 \
-  --set users[0].secretKey="User123\!@#" \
-  --set users[0].policy=user01 \
-  --set policies[0].name=user01 \
-  --set policies[0].statements[0].resources[0]="arn:aws:s3:::user01" \
-  --set policies[0].statements[0].resources[1]="arn:aws:s3:::user01/*" \
-  --set policies[0].statements[0].actions[0]="s3:*" \
-  --set buckets[0].name=user01 \
-  --set buckets[0].versioning=true \
-  --set buckets[0].objectlocking=true
-
 helm upgrade --install argo-workflows argo/argo-workflows \
   --version 0.25.1 \
   --namespace argo-system \
