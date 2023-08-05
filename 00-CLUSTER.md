@@ -35,6 +35,7 @@ export BRANCH_NAME="main"
 export REPO_URL_RAW="https://raw.githubusercontent.com/${PROJ_PATH}"
 export REPO_URL="https://github.com/${PROJ_PATH}.git"
 
+kubectl create namespace argocd-system
 
 helm upgrade \
     --install argocd argo/argo-cd \
