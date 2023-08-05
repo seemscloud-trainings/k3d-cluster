@@ -7,7 +7,7 @@ metallb-system
 cert-manager-system
 nginx-ingress-system
 argocd-system
-argo-system
+argo-workflows-system
 keda-system
 kiali-system
 istio-system
