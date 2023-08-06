@@ -1,11 +1,5 @@
 ```bash
-helm upgrade --install logging-operator banzaicloud-stable/logging-operator \
-  --version 3.17.10 \
-  --namespace logging-system
-```
-
-```bash
-helm upgrade --install logging-operator-logging banzaicloud-stable/logging-operator-logging \
+helm upgrade --install logging-operator-logging kube-logging/logging-operator-logging \
   --version 3.17.10 \
   --namespace logging-system \
   --set tls.enabled=false \
