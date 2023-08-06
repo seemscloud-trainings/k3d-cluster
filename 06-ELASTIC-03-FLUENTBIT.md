@@ -1,6 +1,6 @@
 ```bash
 helm upgrade --install logging-operator-logging kube-logging/logging-operator-logging \
-  --version 3.17.10 \
+  --version 4.2.2 \
   --namespace logging-system \
   --set tls.enabled=false \
   --set clusterFlows[0].name=logs \
