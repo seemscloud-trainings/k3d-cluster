@@ -28,17 +28,3 @@ kubectl exec -ti vault-0 -- vault status
 kubectl exec -ti vault-1 -- vault status
 kubectl exec -ti vault-2 -- vault status
 ```
-
-```bash
-helm upgrade --install nginx-ingess nginx-stable/nginx-ingress \
-  --version 0.15.2 \
-  --namespace nginx-ingress-system \
-  --set controller.name=nginx-ingress \
-  --set controller.nginxDebug=true \
-  --set-string controller.config.entries.http2=true \
-  --set controller.kind=daemonset
-
-helm upgrade --install keda kedacore/keda \
-  --version 2.8.2 \
-  --namespace keda-system
-```
