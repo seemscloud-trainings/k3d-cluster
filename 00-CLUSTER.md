@@ -7,6 +7,8 @@ k3d cluster delete "${CLUSTER_NAME}"
 ```
 
 ```bash
+export K3D_FIX_MOUNTS=1
+
 k3d cluster create \
   --servers 3 \
   --agents 6 \
