@@ -53,7 +53,7 @@ helm upgrade \
     --version 1.4.0 \
     --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/argocd-apps/values.yaml"
 
-kubectl apply -f <(kustomize build "${REPO_URL}/overlays?ref=${BRANCH_NAME}")
+kubectl apply -f <(kustomize build "${REPO_URL}/overlays/seemscloud?ref=${BRANCH_NAME}")
 ```
 
 ```bash
