@@ -32,7 +32,7 @@ done
 ```
 
 ```bash
-export PROJ_PATH="seemscloud/helm-argocd-self"
+export PROJ_PATH="seemscloud-trainings/helm-argocd-self"
 export BRANCH_NAME="main"
 
 export REPO_URL_RAW="https://raw.githubusercontent.com/${PROJ_PATH}"
