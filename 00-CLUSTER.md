@@ -45,13 +45,13 @@ helm upgrade \
     --install argocd argo/argo-cd \
     --namespace argocd-system \
     --version 5.51.4 \
-    --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/argocd/argocd/values.yaml"
+    --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/stacks/argocd/argocd/values.yaml"
 
 helm upgrade \
     --install argocd-apps argo/argocd-apps \
     --namespace argocd-system \
     --version 1.4.0 \
-    --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/argocd/argocd-apps/values.yaml"
+    --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/stacks/argocd/argocd-apps/values.yaml"
 
 kubectl apply -f <(kustomize build "${REPO_URL}/overlays/seemscloud?ref=${BRANCH_NAME}")
 ```
