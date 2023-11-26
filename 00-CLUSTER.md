@@ -16,8 +16,9 @@ k3d cluster create \
   --k3s-arg "--service-cidr=10.200.0.0/16@server:*" \
   --k3s-arg "--disable=traefik@server:*" \
   --k3s-arg "--disable=servicelb@server:*" \
-  --no-lb ${CLUSTER_NAME} \
-  --image seemscloud/k3s:v1.27.4-k3s1-nfs
+  --no-lb ${CLUSTER_NAME}
+  
+#  --image seemscloud/k3s:v1.27.4-k3s1-nfs
 ```
 
 ```bash
@@ -43,18 +44,16 @@ kubectl create namespace argocd-system
 helm upgrade \
     --install argocd argo/argo-cd \
     --namespace argocd-system \
-    --version 5.42.0 \
-    --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/argocd/values.yaml" \
-    --values "${REPO_URL_RAW}/${BRANCH_NAME}/overlays/seemscloud/values/argocd/values.yaml"
+    --version 5.51.4 \
+    --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/argocd/values.yaml"
 
 helm upgrade \
     --install argocd-apps argo/argocd-apps \
     --namespace argocd-system \
     --version 1.4.0 \
-    --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/argocd-apps/values.yaml" \
-    --values "${REPO_URL_RAW}/${BRANCH_NAME}/overlays/seemscloud/values/argocd-apps/values.yaml"
+    --values "${REPO_URL_RAW}/${BRANCH_NAME}/base/argocd-apps/values.yaml"
 
-kubectl apply -f <(kustomize build "${REPO_URL}/overlays/seemscloud?ref=${BRANCH_NAME}")
+kubectl apply -f <(kustomize build "${REPO_URL}/overlays?ref=${BRANCH_NAME}")
 ```
 
 ```bash
