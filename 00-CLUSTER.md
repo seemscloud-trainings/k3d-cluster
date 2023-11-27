@@ -30,9 +30,7 @@ for i in `seq 0 5` ; do
   kubectl label node k3d-${CLUSTER_NAME}-agent-${i} node-role.kubernetes.io/generic=true
   kubectl label node k3d-${CLUSTER_NAME}-agent-${i} node-role.kubernetes.io/worker=true
 done
-```
 
-```bash
 export PROJ_PATH="seemscloud-trainings/helm-argocd-self"
 export BRANCH_NAME="main"
 
