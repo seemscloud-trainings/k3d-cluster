@@ -17,8 +17,6 @@ k3d cluster create \
   --k3s-arg "--disable=traefik@server:*" \
   --k3s-arg "--disable=servicelb@server:*" \
   --no-lb ${CLUSTER_NAME}
-  
-#  --image seemscloud/k3s:v1.27.4-k3s1-nfs
 ```
 
 ```bash
