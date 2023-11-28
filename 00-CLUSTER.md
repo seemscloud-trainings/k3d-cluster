@@ -21,7 +21,16 @@ k3d cluster create \
 #  --image seemscloud/k3s:v1.27.4-k3s1-nfs
 ```
 
+```bash
+for i in `seq 0 2` ; do
+  kubectl taint nodes "k3d-${CLUSTER_NAME}-server-$i" dedicated=control-plane:NoSchedule
+done
 
+for i in `seq 0 5` ; do
+  kubectl label node k3d-${CLUSTER_NAME}-agent-${i} node-role.kubernetes.io/generic=true
+  kubectl label node k3d-${CLUSTER_NAME}-agent-${i} node-role.kubernetes.io/worker=true
+done
+```
 
 ```bash
 METALLB_CIDR=`docker network inspect k3d-${CLUSTER_NAME} | jq -r ".[0].IPAM.Config[0].Subnet" | awk -F'.' '{print $1"."$2"."$3"."128"/"25}'`
